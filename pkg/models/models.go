@@ -60,11 +60,10 @@ type Vehicle struct {
 }
 
 type Insurance struct{
-	InsuredFirstName *User.FirstName `json:"insuredFirstName"`
-	InsuredLastName *User.LastName `json:"insuredLastName"`
+	Insured *User `json:"insured"`
 	InsuranceProvider string `json:"insuranceProvider"`
 	PolicyNumber string `json:"policyNumber"`
-	ExpirationDate time.Date `json:"expirationDate"`
+	ExpirationDate time.Time `json:"expirationDate"`
 	Vehicle Vehicle `json:"vehicle"`
 }
 
