@@ -28,8 +28,16 @@ type Store struct{
 	Owner string `json:"owner"`
 	Address Address `json:"address"`
 	Products []Product `json:"products"`
+	Services []Service `json:"services"`
 	// Services Rendered because services have different values and aren't products that can just be
 	// picked up
+}
+
+type Service struct {
+	ServiceId int `json:"serviceId"`
+	ServiceName string `json:"serviceName"`
+	ServicePrice float64 `json:"servicePrice"`
+	ServiceDescription string `json:"serviceDescription"`
 }
 
 type Product struct{
