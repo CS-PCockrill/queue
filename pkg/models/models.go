@@ -6,7 +6,8 @@ import (
 
 type User struct{
 	ID int `json:"id"`
-	Name string `json:"name"`
+	FirstName string `json:"firstName"`
+	LastName string `json:"lastName"`
 	Email string `json:"email"`
 	HashedPassword []byte `json:"hashedPassword"`
 	Created time.Time `json:"created"`
@@ -26,19 +27,47 @@ type Store struct{
 	PhoneNumber string `json:"phoneNumber"`
 	Owner string `json:"owner"`
 	Address Address `json:"address"`
+	Products []Product `json:"products"`
+	// Services Rendered because services have different values and aren't products that can just be
+	// picked up
+}
+
+type Product struct{
+	ProductId int `json:"productId"`
+	ProductName string `json:"productName"`
+	ProductPrice float64 `json:"productPrice"`
+	ProductDescription string `json:"productDescription"`
 }
 
 type Driver struct{
 	User User `json:"user"`
 	HashedSSN string `json:"hashedSSN"`
 	Insurance Insurance `json:"insurance"`
-
+	License License `json:"license"`
+	Vehicle Vehicle `json:"vehicle"`
 }
 
 type Image struct{
 	photo map[int]int
 }
 
+type Vehicle struct {
+	VehicleMake string `json:"vehicleMake"`
+	VehicleModel string `json:"vehicleModel"`
+	VehicleYear string `json:"vehicleYear"`
+	VehicleColor string `json:"vehicleColor"`
+	VinNumber string `json:"vinNumber"`
+}
+
 type Insurance struct{
+	InsuredFirstName *User.FirstName `json:"insuredFirstName"`
+	InsuredLastName *User.LastName `json:"insuredLastName"`
+	InsuranceProvider string `json:"insuranceProvider"`
+	PolicyNumber string `json:"policyNumber"`
+	ExpirationDate time.Date `json:"expirationDate"`
+	Vehicle Vehicle `json:"vehicle"`
+}
+
+type License struct{
 	Proof Image `json:"proof"`
 }
