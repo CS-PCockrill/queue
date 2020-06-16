@@ -33,6 +33,13 @@ type Store struct{
 	// picked up
 }
 
+type Service struct {
+	ServiceId int `json:"serviceId"`
+	ServiceName string `json:"serviceName"`
+	ServicePrice float64 `json:"servicePrice"`
+	ServiceDescription string `json:"serviceDescription"`
+}
+
 type Product struct{
 	ProductId int `json:"productId"`
 	ProductName string `json:"productName"`
