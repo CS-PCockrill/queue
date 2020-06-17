@@ -2,19 +2,24 @@ package mongodb
 
 import (
 	"github.com/CS-PCockrill/queue/pkg/models"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func RegisterDriver(driver *models.Driver) (int, error) {
+type DriverFunctions struct{
+	MGO *mongo.Client
+}
+
+func (d *DriverFunctions) RegisterDriver(driver *models.Driver) (int, error) {
 	// Register a driver, verify background check, and verify state id & insurance
 	return 0, nil
 }
 
-func Validate(email, password string) (int, error) {
+func (d *DriverFunctions) Validate(email, password string) (int, error) {
 	// Validate the drivers login credentials
 	return 0, nil
 }
 
-func getDriver(id int) *models.Driver {
+func (d *DriverFunctions) getDriver(id int) *models.Driver {
 	// Get a driver with parameter id
 	return nil
 }
