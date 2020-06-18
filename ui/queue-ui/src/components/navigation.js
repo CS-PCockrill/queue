@@ -15,6 +15,16 @@ const NavItem = props => {
     );
 }
 
+<<<<<<< HEAD
+=======
+const CustomStyle = {
+    option: (base, state) => ({
+      ...base,
+      backgroundColor: state.isSelected ? "blue" : "green",
+    })
+  }
+
+>>>>>>> tfalade-queue
 class Navigation extends Component {
 
     render() { 
