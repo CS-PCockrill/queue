@@ -10,7 +10,7 @@ const Styles = styled.div`
         background-size: cover;
         color: #fff;
         background-color: #000;
-        height: 400px;
+        height: screen.height;
         text-align: center;
         position: relative;
     }
