@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import Navigation from './components/navigation'
+import RegistrationForm from './components/RegistrationForm/registrationform';
+import { 
+    BrowserRouter as Router,
+    Switch,
+    Route 
+    } from 'react-router-dom';
+
+
 import './App.css';
 import Counters from './components/counters';
+import Navigation from './components/navigation'
 
 class App extends Component {
   state = {
-    counters: [
-      { id: 1, value: 4},
-      { id: 2, value: 0},
-      { id: 3, value: 9},
-      { id: 4, value: 0}
-    ]
+    
   };
 
   constructor() {
@@ -42,17 +45,20 @@ class App extends Component {
     this.setState({ counters });
   }
   render() { 
-    return ( <React.Fragment>
-      <Navigation />
-      <main className="container">
-        <Counters 
-        counters={this.state.counters}
-        onReset={this.handleReset}
-        onDelete={this.handleDelete}
-        onIncrement={this.handleIncrement}
-        />
-      </main>
-    </React.Fragment> );
+    return ( 
+      <Router>
+        <React.Fragment className="App">
+          <Navigation />
+            <div className="container d-flex align-items-center flex-column">
+              <Switch>
+                <Route path="/" exact={true}>
+                  <RegistrationForm />
+                </Route>
+              </Switch>
+            </div>
+        </React.Fragment>
+      </Router> 
+      );
   }
 }
  

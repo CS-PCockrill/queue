@@ -15,13 +15,6 @@ const NavItem = props => {
     );
 }
 
-const CustomStyle = {
-    option: (base, state) => ({
-      ...base,
-      backgroundColor: state.isSelected ? "blue" : "green",
-    })
-  }
-
 class Navigation extends Component {
 
     render() { 
