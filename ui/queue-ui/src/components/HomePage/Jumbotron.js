@@ -3,14 +3,14 @@ import { Jumbotron as Jumbo, Container, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import deliveryMan from './cover-image-delivery-man.jpg'
 
-// background: url(${deliveryMan}) no-repeat fixed bottom;
+// 
 const Styles = styled.div`
     .jumbo {
         
         background-size: cover;
         color: #fff;
         background-color: #000;
-        height: screen.height;
+        height: 600px;
         text-align: center;
         position: relative;
     }
@@ -83,24 +83,41 @@ const Styles = styled.div`
         min-width: 100%;
     }
     .title {
-        text-align: center;
+        text-align: left;
         line-height: normal;
         position: absolute;
         box-sizing: content-box;
         display: block;
         float: none;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        left: 15%;
+        top: 10%;
+        transform: translate(-25%, -10%);
     }
 `;
 
 export const Jumbotron = () => (
     <Styles>
         <Jumbo fluid className="jumbo">
+            <div>
+                <div className="title">
+                    <h2>Anything, Delivered with Queue.</h2>
+                </div>
+                <div style={{marginBottom: 45, position: "relative"}}></div>
+                <div>
+                    <h4>Testin</h4>
+                </div>
+            </div>
+            
             <div className="overlay"></div>
             <Container>
-                <div className="title">
+                
+            </Container>
+        </Jumbo>
+
+    </Styles>
+)
+
+{/* <div className="title">
                     <h2 style={{marginBottom: 45}}>Anything, delivered with Queue</h2>
                     <div className="searchContainer">
                         <div className="searchBarContainer">
@@ -113,9 +130,4 @@ export const Jumbotron = () => (
                         <div class="sbm"></div>
                         <Button className="button">Press me</Button>
                     </div>
-                </div>
-            </Container>
-        </Jumbo>
-
-    </Styles>
-)
+                </div> */}

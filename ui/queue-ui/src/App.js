@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import RegistrationForm from './components/RegistrationForm/registrationform';
 import { 
     BrowserRouter as Router,
     Switch,
@@ -9,70 +7,29 @@ import {
 
 
 import './App.css';
-import Counters from './components/counters';
-import Navigation from './components/navigation'
+import { NavigationBar } from './components/NavigationBar';
+import { RegistrationForm } from './components/RegistrationForm/registrationform';
+import Home from './components/HomePage/Home';
+import About from './components/About';
+import Stores from './components/Stores';
+import NoMatch from './components/NoMatch';
+import { Layout } from './components/Layout'
 
 class App extends Component {
-  state = {
-    
-=======
-import Navigation from './components/navigation'
-import './App.css';
-import Counters from './components/counters';
-
-class App extends Component {
-  state = {
-    counters: [
-      { id: 1, value: 4},
-      { id: 2, value: 0},
-      { id: 3, value: 9},
-      { id: 4, value: 0}
-    ]
->>>>>>> tfalade-queue
-  };
-
-  constructor() {
-    super();
-    console.log('App - Constructor');
-  }
-
-  componentDidMount() {
-    console.log('App - Mounted')
-  }
-
-  handleIncrement = counter => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index].value++;
-    this.setState({counters});
-  };
-
-  handleReset = () => {
-    const counters = this.state.counters.map(c => {
-      c.value = 0;
-      return c;
-    })
-    this.setState({counters});
-  };
-
-  handleDelete = counterId => {
-    const counters = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({ counters });
-  }
   render() { 
     return ( 
-      <Router>
-        <React.Fragment className="App">
-          <Navigation />
-            <div className="container d-flex align-items-center flex-column">
-              <Switch>
-                <Route path="/" exact={true}>
-                  <RegistrationForm />
-                </Route>
-              </Switch>
-            </div>
-        </React.Fragment>
-      </Router> 
+      <React.Fragment>
+        <NavigationBar />
+        <Router>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/about" component={About} />
+              <Route path="/stores" component={Stores} />
+              <Route path="/register" component={RegistrationForm} />
+              <Route component={NoMatch} />
+            </Switch>
+        </Router>
+      </React.Fragment> 
       );
   }
 }

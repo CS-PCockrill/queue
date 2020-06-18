@@ -32,7 +32,7 @@ export const NavigationBar = () => (
                 </Nav>
                 <Nav className="ml-auto">
                     <Nav.Item><Nav.Link href="/">Sign In</Nav.Link></Nav.Item>
-                    <Nav.Item><Nav.Link href="/registrationform">Register</Nav.Link></Nav.Item>
+                    <Nav.Item><Nav.Link href="/register">Register</Nav.Link></Nav.Item>
                 </Nav>
 
             </Navbar.Collapse>

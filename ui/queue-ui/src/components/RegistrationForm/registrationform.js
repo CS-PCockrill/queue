@@ -137,21 +137,3 @@ export function RegistrationForm(props) {
         </div>
         );
 }
-
-// function ModalForm() {
-//     const [modalShow, setModalShow] = React.useState(false);
-  
-//     return (
-//       <>
-//         <Button variant="primary" onClick={() => setModalShow(true)}>
-//           Launch vertically centered modal
-//         </Button>
-  
-//         <Registration
-//           show={modalShow}
-//           onHide={() => setModalShow(false)}
-//         />
-//       </>
-//     );
-//   }
-// export default RegistrationForm;
