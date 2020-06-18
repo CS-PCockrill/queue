@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Form, Button, Col } from 'react-bootstrap';
 import axios from 'axios';
 
-function RegistrationForm(props) {
+export function RegistrationForm(props) {
     const [state, setState] = useState({
+        fullName: "",
         email : "",
         password : ""
     })
@@ -17,21 +19,26 @@ function RegistrationForm(props) {
     
     const handleSubmitClick = (e) => {
         e.preventDefault();
-        if (state.password === state.confirmPassword) {
+        if (document.getElementById('password').value) {
             sendDetailsToServer()
         } else {
-            props.showError('Password do not match.');
+            console.log('Password do not match.');
         }
     }
 
     const sendDetailsToServer = () => {
-        if (state.email.length && state.passwod.length) {
-            props.shoeError(null);
+        if (true){
+            // props.shoeError(null);
             const payload = {
+                "firstName" : state.fullName.split(' ').slice(0, -1).join(' '),
+                "lastName" : state.fullName.split(' ').slice(-1).join(' '),
                 "email": state.email,
                 "password": state.password,
             }
             // FIXME: Implement correct api link.
+            console.log(payload['firstName'])
+            console.log(payload['lastName'])
+            console.log(payload['email'])
             axios.post('API_BASE_URL' + 'register', payload)
                 .then(function (response) {
                     if (response.data.code === 200) {
@@ -41,10 +48,10 @@ function RegistrationForm(props) {
                         }))
                         // redirectToHome();
                         console.log("Success")
-                        props.showError(null)
+                        console.log("null")
 
                     } else {
-                        props.showError('Some error ocurred');
+                        console.log('Some error ocurred');
                     }
 
                 }).catch(function (error) {
@@ -57,47 +64,94 @@ function RegistrationForm(props) {
 
     return(
         <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
-            <h3>Register</h3>
-        <form>
-            <div className="form-group text-left">
-            <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" 
-                   className="form-control" 
-                   id="email" 
-                   aria-describedby="emailHelp" 
-                   placeholder="Enter email"
-                   value={state.email}
-                   onChange={handleChange}
-            />
-            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div className="form-group text-left">
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input type="password" 
-                    className="form-control" 
+            <Form>
+                <Form.Group controlId="formGroupFullName">
+                    <Form.Label>Full name</Form.Label>
+                    <Form.Control 
+                    className="form-control"
+                    type="name"
+                    id="fullName"
+                    value={state.fullName}
+                    onChange={handleChange}
+                    
+                    />
+                </Form.Group>
+                <Form.Group controlId="formGroupEmail">
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control 
+                    className="form-control"
+                    type="email"
+                    id="email" 
+                    value={state.email}
+                    onChange={handleChange}
+                    
+                    />
+                </Form.Group>
+                <Form.Group controlId="formGroupPhone">
+                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Control 
+                    className="form-control"
+                    type="phone"
+                    id="phoneNumber" 
+                    value={state.email}
+                    onChange={handleChange}
+                    
+                    />
+                </Form.Group>
+                <Form.Group controlId="formGroupPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control 
+                    className="form-control"
+                    type="password"
                     id="password" 
-                    placeholder="Password"
                     value={state.password}
                     onChange={handleChange}
-                />
-            </div>
-            <div className="form-group text-left">
-                <label htmlFor="exampleInputPassword1">Confirm Password</label>
-                <input type="password" 
-                    className="form-control" 
-                    id="confirmPassword" 
-                    placeholder="Confirm Password"
-                />
-            </div>
-            <button 
-                type="submit" 
-                className="btn btn-primary"
-                onClick={handleSubmitClick}
-            >
-                Register
-            </button>
-        </form>
-    </div>
+                    
+                    />
+                </Form.Group>
+                <Form.Row>
+                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control type="text" placeholder="City" required />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a valid city.
+                    </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="3" controlId="validationCustom04">
+                    <Form.Label>State</Form.Label>
+                    <Form.Control type="text" placeholder="State" required />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a valid state.
+                    </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                    <Form.Label>Zip</Form.Label>
+                    <Form.Control type="text" placeholder="Zip" required />
+                    <Form.Control.Feedback type="invalid">
+                        Please provide a valid zip.
+                    </Form.Control.Feedback>
+                    </Form.Group>
+                </Form.Row>
+                <Button className="m-2" type="submit" varient="outline-primary" onClick={handleSubmitClick}>Register</Button>
+            </Form>
+        </div>
         );
 }
-export default RegistrationForm;
+
+// function ModalForm() {
+//     const [modalShow, setModalShow] = React.useState(false);
+  
+//     return (
+//       <>
+//         <Button variant="primary" onClick={() => setModalShow(true)}>
+//           Launch vertically centered modal
+//         </Button>
+  
+//         <Registration
+//           show={modalShow}
+//           onHide={() => setModalShow(false)}
+//         />
+//       </>
+//     );
+//   }
+// export default RegistrationForm;
