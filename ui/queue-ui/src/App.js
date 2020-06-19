@@ -8,7 +8,9 @@ import {
 
 import './App.css';
 import { NavigationBar } from './components/NavigationBar';
-import { RegistrationForm } from './components/RegistrationForm/registrationform';
+import { RegistrationOptions } from './components/RegistrationForm/RegistrationOptions';
+import { RegistrationForm } from './components/RegistrationForm/Customer/RegistrationForm';
+import { SignInOptions } from './components/SignIn/SignInOptions';
 import Home from './components/HomePage/Home';
 import About from './components/About';
 import Stores from './components/Stores';
@@ -25,7 +27,9 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/stores" component={Stores} />
-              <Route path="/register" component={RegistrationForm} />
+              <Route path="/register" component={RegistrationOptions} />
+              <Route path="/registercustomer" component={RegistrationForm} />
+              <Route path="/signin" component={SignInOptions} />
               <Route component={NoMatch} />
             </Switch>
         </Router>

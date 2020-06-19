@@ -1,7 +1,7 @@
 import React from 'react';
 import { Jumbotron as Jumbo, Container, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import deliveryMan from './cover-image-delivery-man.jpg'
+import deliveryMan from './high-rise-buildings.jpg'
 
 // 
 const Styles = styled.div`

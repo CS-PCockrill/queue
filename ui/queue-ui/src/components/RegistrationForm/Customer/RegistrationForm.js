@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Container, Form, Button, Col, Row } from 'react-bootstrap'
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Styles = styled.div`
+    main {
+        background-color: #fff;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+        width: 33vw;
+    }
+`;
 
 export function RegistrationForm(props) {
     const [state, setState] = useState({
         fullName: "",
         email : "",
-        password : ""
+        password : "",
+        city : ""
     })
 
     const handleChange = (e) => {
@@ -61,10 +74,11 @@ export function RegistrationForm(props) {
             props.showError('Please enter a valid username and password.')
         }
     }
-
     return(
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
-            <Form>
+        <Styles>
+            <main>
+                <h1>Customer Sign Up</h1>
+                <Form>
                 <Form.Group controlId="formGroupFullName">
                     <Form.Label>Full name</Form.Label>
                     <Form.Control 
@@ -98,42 +112,9 @@ export function RegistrationForm(props) {
                     
                     />
                 </Form.Group>
-                <Form.Group controlId="formGroupPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                    className="form-control"
-                    type="password"
-                    id="password" 
-                    value={state.password}
-                    onChange={handleChange}
-                    
-                    />
-                </Form.Group>
-                <Form.Row>
-                    <Form.Group as={Col} md="6" controlId="validationCustom03">
-                    <Form.Label>City</Form.Label>
-                    <Form.Control type="text" placeholder="City" required />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide a valid city.
-                    </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom04">
-                    <Form.Label>State</Form.Label>
-                    <Form.Control type="text" placeholder="State" required />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide a valid state.
-                    </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom05">
-                    <Form.Label>Zip</Form.Label>
-                    <Form.Control type="text" placeholder="Zip" required />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide a valid zip.
-                    </Form.Control.Feedback>
-                    </Form.Group>
-                </Form.Row>
-                <Button className="m-2" type="submit" varient="outline-primary" onClick={handleSubmitClick}>Register</Button>
-            </Form>
-        </div>
-        );
+                </Form>
+            </main>
+        </Styles>
+        
+    )
 }
