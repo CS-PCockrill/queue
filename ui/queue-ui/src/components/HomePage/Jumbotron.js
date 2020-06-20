@@ -93,6 +93,13 @@ const Styles = styled.div`
         top: 10%;
         transform: translate(-25%, -10%);
     }
+
+    .imgContainer {
+        right: 0;
+        left: auto;
+        margin: 0 auto;
+        display: block;
+    }
 `;
 
 export const Jumbotron = () => (
@@ -102,7 +109,7 @@ export const Jumbotron = () => (
                     <h2>Anything, Delivered with Queue.</h2>
             </div>
             <div style={{backgroundColor: "#20ABF5", width: "50%", height: "760px"}}>
-                <img src={deliveryMan} style={{right: 0, left: "auto", width: 50, height: 50, margin: "0 auto", display: "block"}}/>
+                <img src={deliveryMan} className="imgContainer"/>
             </div>
             <div className="overlay"></div>
 
