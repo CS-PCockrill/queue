@@ -97,22 +97,16 @@ const Styles = styled.div`
 
 export const Jumbotron = () => (
     <Styles>
-        <Jumbo fluid className="jumbo">
-            <div>
-                <div className="title">
+        <div style={{display: "flex"}}>
+            <div style={{backgroundColor: "white", width: "50%"}}>
                     <h2>Anything, Delivered with Queue.</h2>
-                </div>
-                <div style={{marginBottom: 45, position: "relative"}}></div>
-                <div>
-                    <h4>Testin</h4>
-                </div>
             </div>
-            
+            <div style={{backgroundColor: "#20ABF5", width: "50%", height: "760px"}}>
+                <img src={deliveryMan} style={{right: 0, left: "auto", width: 50, height: 50, margin: "0 auto", display: "block"}}/>
+            </div>
             <div className="overlay"></div>
-            <Container>
-                
-            </Container>
-        </Jumbo>
+
+        </div>
 
     </Styles>
 )
