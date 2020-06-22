@@ -27,25 +27,35 @@ type Store struct{
 	PhoneNumber string `json:"phoneNumber"`
 	Owner string `json:"owner"`
 	Address Address `json:"address"`
-	Products []Product `json:"products"`
-	Services []Service `json:"services"`
+	Item []Item `json:"items"`
 	// Services Rendered because services have different values and aren't products that can just be
 	// picked up
 }
 
-type Service struct {
-	ServiceId int `json:"serviceId"`
-	ServiceName string `json:"serviceName"`
-	ServicePrice float64 `json:"servicePrice"`
-	ServiceDescription string `json:"serviceDescription"`
+type Item struct {
+	ItemId int `json:"itemId"`
+	ItemName string `json:"itemName"`
+	ItemPrice string `json:"itemPrice"`
+	ItemDescription string `json:"itemDescription"`
+	InStock bool `json:"inStock"`
+	Visibility bool `json:"visibility`
+	// Type defines whether it is a product or service
+	Type string `json:"type"`
 }
 
-type Product struct{
-	ProductId int `json:"productId"`
-	ProductName string `json:"productName"`
-	ProductPrice float64 `json:"productPrice"`
-	ProductDescription string `json:"productDescription"`
-}
+// type Service struct {
+// 	ServiceId int `json:"serviceId"`
+// 	ServiceName string `json:"serviceName"`
+// 	ServicePrice float64 `json:"servicePrice"`
+// 	ServiceDescription string `json:"serviceDescription"`
+// }
+
+// type Product struct{
+// 	ProductId int `json:"productId"`
+// 	ProductName string `json:"productName"`
+// 	ProductPrice float64 `json:"productPrice"`
+// 	ProductDescription string `json:"productDescription"`
+// }
 
 type Driver struct{
 	User User `json:"user"`
