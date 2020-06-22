@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Jumbotron as Jumbo, Container, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import deliveryMan from './high-rise-buildings.jpg'
+import deliveryMan from './high-rise-buildings.jpg';
+import { Icon } from 'semantic-ui-react';
+import Autocomplete from 'react-google-autocomplete';
 
 // 
 const Styles = styled.div`
@@ -37,12 +39,18 @@ const Styles = styled.div`
         position: relative;
         justify-content: center;
         display: flex;
-    }
-    .searchBarContainer {
-        width: 540px;
         flex: 1 1 0%;
         position: relative;
-        background-color: #efefef;
+        box-shadow: 0 3px 6px #888888;
+    }
+    .searchBarContainer {
+        width: 100%;
+        padding: 12px 16px 12px 16px;
+        display: flex;
+        background-color: #fff;
+        line-height: 24px;
+        font-size: 16px;
+        border: none;
     }
     .align {
         align-content: center;
@@ -51,15 +59,23 @@ const Styles = styled.div`
     .button {
         align-items: center;
         display: flex;
-        -moz-box-align: center;
+        background-color: black;
+        font-size: 16px;
+        border: none;
     }
+    .button:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
     .sbm {
         width: 16px;
         height: 1px;
     }
-    .input {
-        outline: currentcolor none medium;
-        flex: 1 1 0%;
+    input {
+        width: 100%;
+        border: none;
+        outline-width: 0;
 
     }
     .inputLabel {
@@ -78,9 +94,12 @@ const Styles = styled.div`
         display: block;
         z-index: auto;
         position: relative;
-        box-sizing: content-box;
+        box-sizing: border-box;
         float: none;
-        min-width: 100%;
+        height: 50px;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px #efefef;
     }
     .title {
         text-align: left;
@@ -99,17 +118,75 @@ const Styles = styled.div`
         left: auto;
         margin: 0 auto;
         display: block;
+        width: 50vw;
+        height: 93%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
     }
+    img {
+        height: 43vw;
+        width: 43vw;
+        transform: rotate(-5deg);
+        border-radius: 10px; 
+    }
+    #deliveryHeader {
+        width: 45vw;
+        height: 30vw;
+        background-color: white;
+
+    }
+    h2 {
+        font-size: 55px;
+    }
+    p {
+        margin: 0 auto;
+    }
+
 `;
 
-export const Jumbotron = () => (
+export const Jumbotron = () => { 
+    const [place, setPlace] = useState(null);
+
+    return (
     <Styles>
         <div style={{display: "flex"}}>
             <div style={{backgroundColor: "white", width: "50%"}}>
-                    <h2>Anything, Delivered with Queue.</h2>
+                <div className="imgContainer">
+                    <div id="deliveryHeader">
+                        <div style={{marginBottom: 45}}>
+                            <h2>Delivery with Queue</h2>
+                        </div>
+                        <div style={{display: "flex"}}>
+                            <div className="searchContainer">
+                                <div className="searchBarContainer">
+                                    <Icon name="map pin" />
+                                    <Autocomplete
+                                        apiKey="AIzaSyAw3LVRVrJ25ZRglrrK521HePSkdABf5fo"
+                                        style={{width: '100%'}}
+                                        onChange={(e) => {
+                                            setPlace(e.target.value)
+                                        }}
+                                        onPlaceSelected={(place) => {
+                                            setPlace(place)
+                                        }}
+                                        types={['(regions)']}
+                                        componentRestrictions={{country: "us"}}
+                                    />
+                                </div>
+                            </div>
+                            <div className="sbm"></div>
+                            <Button onClick={() => console.log(place)} className="button">Find Stores</Button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <div style={{backgroundColor: "#20ABF5", width: "50%", height: "760px"}}>
-                <img src={deliveryMan} className="imgContainer"/>
+            <div style={{backgroundColor: "#20ABF5", width: "50%", height: "100vh"}}>
+                <div className="imgContainer">
+                    <img src={deliveryMan} />
+                </div>
             </div>
             <div className="overlay"></div>
 
@@ -117,7 +194,7 @@ export const Jumbotron = () => (
 
     </Styles>
 )
-
+                                    }
 {/* <div className="title">
                     <h2 style={{marginBottom: 45}}>Anything, delivered with Queue</h2>
                     <div className="searchContainer">

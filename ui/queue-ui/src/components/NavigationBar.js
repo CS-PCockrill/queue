@@ -12,6 +12,7 @@ const Styles = styled.div`
 
     .navbar-brand, .navbar-nav .nav-link {
         color: #000;
+        font-size: 20px;
         
     }
     .navbar-brand:hover {
@@ -27,22 +28,26 @@ const Styles = styled.div`
         left: auto;
     }
     #nav-dropdown {
-        color: white;
+        color: black;
     }
 
+    #shadow { 
+        flex-direction: space-evenly;
+        width: 100%;
+    }
 
 `;
 
 export const NavBarTwo = () => {
     return(
         <div style={{width: "50%"}}>
-            <Navbar style={{backgroundColor: "#20ABF5"}} expand="sm">
+            <Navbar style={{backgroundColor: "#fff"}} expand="sm">
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Nav.Link style={{color: "white"}} href="/">Sign in</Nav.Link>
+                    <Nav.Link style={{color: "black"}} href="/">Sign in</Nav.Link>
                     <NavDropdown title="Sign up" id="nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Customer</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Driver</NavDropdown.Item>
+                        <NavDropdown.Item href="/register">Driver</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 </Navbar.Collapse>
@@ -57,7 +62,7 @@ export const NavBarOne = () => {
     return(
         <div style={{width: "50%"}}>
             <Navbar style={{backgroundColor: "white"}} expand="sm">
-                <Navbar.Brand href="/home">Queue</Navbar.Brand>
+                <Navbar.Brand href="/">Queue</Navbar.Brand>
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link href="/stores">Stores</Nav.Link>
@@ -73,7 +78,7 @@ export const NavBarThree = () => {
     return(
         <div style={{width: "100%"}}>
 
-        <Navbar style={{backgroundColor: "#20ABF5"}} expand="md">
+        <Navbar style={{backgroundColor: "#20ABF5"}} expand="lg">
             <Navbar.Brand href="/">Queue</Navbar.Brand>
                 <Nav className="ml-auto">
                 <NavDropdown title="Dropdown" id="nav-dropdown">
@@ -100,7 +105,7 @@ export const NavigationBar = () => {
     return (
         <Styles>
                 {
-                    width < 700 ? <div style={{display:"flex"}}><NavBarThree /></div> : <div style={{display: "flex", flexDirection: "space-evenly"}}><NavBarOne /><NavBarTwo /></div>
+                    width < 700 ? <div style={{display:"flex"}}><NavBarThree /></div> : <div style={{display: "flex"}}><NavBarOne /><NavBarTwo /></div>
                 }
         </Styles>
     )
