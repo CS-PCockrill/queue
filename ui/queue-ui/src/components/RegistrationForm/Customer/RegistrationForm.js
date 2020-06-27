@@ -93,9 +93,10 @@ const Styles = styled.div`
 
 export function RegistrationForm(props) {
     const [state, setState] = useState({
+        username: "",
         firstName: "",
+        lastName: "",
         email : "",
-        phoneNumber: "",
         password : "",
         city : ""
     })
@@ -121,16 +122,16 @@ export function RegistrationForm(props) {
         if (true){
             // props.shoeError(null);
             const payload = {
-                "firstName" : state.fullName.split(' ').slice(0, -1).join(' '),
-                "lastName" : state.fullName.split(' ').slice(-1).join(' '),
-                "email": state.email,
-                "password": state.password,
+                "username" : state.username,
+                "firstName" : state.firstName,
+                "lastName" : state.lastName,
+                "email" : state.email,
+                "password" : state.password,
+                "city" : state.city
             }
             // FIXME: Implement correct api link.
-            console.log(payload['firstName'])
-            console.log(payload['lastName'])
-            console.log(payload['email'])
-            axios.post('API_BASE_URL' + 'register', payload)
+
+            axios.post('API_BASE_URL' + 'signUp', payload)
                 .then(function (response) {
                     if (response.data.code === 200) {
                         setState(prevState => ({
@@ -153,12 +154,15 @@ export function RegistrationForm(props) {
         }
     }
     return(
+
+        // Insert a Drive with Queue "Learn more" which takes you to another page that takes you 
+        // to what it means to drive with Queue
         <Styles>
             <div className="registerMain">
                 <div className="driver_caption">
                     <div style={{paddingRight: "100px", display: "flex", justifyContent: "center", flexDirection: "column"}}>
-                        <h1 style={{fontSize: 55, fontWeight: "bold"}}>Drive with Queue</h1>
-                        <h2 style={{fontSize: 35}}>Earn anytime, anywhere</h2>
+                        <h1 style={{fontSize: 55, fontWeight: "bold"}}>Queue Tech</h1>
+                        <h2 style={{fontSize: 35}}>Delivery anytime, anywhere.</h2>
                     </div>
                 </div>
                 <div className="ml-auto formContainer">
@@ -169,11 +173,11 @@ export function RegistrationForm(props) {
                     <Form.Group controlId="formGroupEmail">
                         <Form.Control 
                         className="form-control"
-                        placeholder="Email"
-                        type="email"
-                        id="email" 
+                        placeholder="Username"
+                        type="username"
+                        id="username" 
                         autocomplete="none"
-                        value={state.email}
+                        value={state.username}
                         onChange={handleChange}
                         
                         />
@@ -200,7 +204,7 @@ export function RegistrationForm(props) {
                                 placeholder="Last name"
                                 type="name"
                                 id="lastName"
-                                value={state.fullName}
+                                value={state.lastName}
                                 onChange={handleChange}
                                 
                                 />
@@ -211,11 +215,11 @@ export function RegistrationForm(props) {
                     <Form.Group controlId="formGroupPhone">
                         <Form.Control 
                         className="form-control"
-                        placeholder="Phone"
+                        placeholder="Email"
                         autocomplete="none"
-                        type="phone"
-                        id="phoneNumber" 
-                        value={state.phoneNumber}
+                        type="email"
+                        id="email" 
+                        value={state.email}
                         onChange={handleChange}
                         
                         />

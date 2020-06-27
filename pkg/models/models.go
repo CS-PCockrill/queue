@@ -7,6 +7,7 @@ import (
 
 type User struct{
 	ID int `json:"id"`
+	Username string `json:"username"`
 	FirstName string `json:"firstName"`
 	LastName string `json:"lastName"`
 	Email string `json:"email"`
@@ -23,7 +24,7 @@ type Address struct{
 	Zip string `json:"zip"`
 }
 
-type Store struct{
+type Store struct {
 	Name string `json:"name"`
 	PhoneNumber string `json:"phoneNumber"`
 	Owner string `json:"owner"`
@@ -60,6 +61,7 @@ type Item struct {
 
 type Driver struct{
 	User User `json:"user"`
+	Address Address `json:"address"`
 	HashedSSN string `json:"hashedSSN"`
 	Insurance Insurance `json:"insurance"`
 	License License `json:"license"`
