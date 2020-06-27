@@ -4,11 +4,11 @@ import(
 	"github.com/gorilla/mux"
 	"net/http"
 )
-func myRoutes() http.Handler{
-	mux := mux.NewRouter()
-	mux.HandleFunc("/", Welcome).Methods("GET")
-	mux.HandleFunc("/signIn", SignIn).Methods("GET")
-	mux.HandleFunc("/signUp", SignUp).Methods("GET")
+func (app *appInjection) myRoutes() http.Handler{
+	gMux := mux.NewRouter()
+	gMux.HandleFunc("/", app.Welcome).Methods("GET")
+	gMux.HandleFunc("/signIn", app.SignIn).Methods("GET")
+	gMux.HandleFunc("/signUp", app.SignUp).Methods("GET")
 
-	return mux
+	return gMux
 }

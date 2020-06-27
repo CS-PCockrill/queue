@@ -6,7 +6,7 @@ import (
 )
 
 type StoreFunctions struct{
-	MGO *mongo.Client
+	CLIENT *mongo.Client
 }
 func (s *StoreFunctions) RegisterStore(store *models.Store) (int, error) {
 	// Register a store after registering a user...
