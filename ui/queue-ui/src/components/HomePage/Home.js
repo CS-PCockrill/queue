@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Jumbotron } from './Jumbotron'
+import { Jumbotron } from './Jumbotron';
+// import { NavigationBar } from '../NavigationBar';
 
 class Home extends Component {
     state = {  }

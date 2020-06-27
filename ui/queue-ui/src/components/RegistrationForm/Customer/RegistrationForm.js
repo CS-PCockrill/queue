@@ -245,7 +245,7 @@ export function RegistrationForm(props) {
                     </Form>
                     </div>
                     <div style={{justifyContent:"center", display: "flex", width: "100%"}}>
-                        <Button style={{fontSize: "18px", width: "50%", fontWeight: "bold"}}>Next</Button>
+                        <Button style={{fontSize: "18px", width: "50%", fontWeight: "bold"}}>Submit</Button>
                     </div>
                     
                 </div>
