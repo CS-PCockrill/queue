@@ -1,89 +1,89 @@
 package models
 
 import (
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-type User struct{
-	ID int `json:"id"`
-	FirstName string `json:"firstName"`
-	LastName string `json:"lastName"`
-	Email string `json:"email"`
-	HashedPassword []byte `json:"hashedPassword"`
-	Created time.Time `json:"created"`
-	Active bool `json:"active"`
-	Address Address `json:"address"`
+type User struct {
+	ID             int       `json:"id"`
+	FirstName      string    `json:"firstName"`
+	LastName       string    `json:"lastName"`
+	Email          string    `json:"email"`
+	HashedPassword []byte    `json:"hashedPassword"`
+	Created        time.Time `json:"created"`
+	Active         bool      `json:"active"`
+	Address        Address   `json:"address"`
 }
 
-type Address struct{
+type Address struct {
 	Street string `json:"street"`
-	City string `json:"city"`
-	State string `json:"state"`
-	Zip string `json:"zip"`
+	City   string `json:"city"`
+	State  string `json:"state"`
+	Zip    string `json:"zip"`
 }
 
-type Store struct{
-	Name string `json:"name"`
-	PhoneNumber string `json:"phoneNumber"`
-	Owner string `json:"owner"`
-	Address Address `json:"address"`
-	Products []Product `json:"products"`
-	Services []Service `json:"services"`
+type Store struct {
+	Name        string    `json:"name"`
+	PhoneNumber string    `json:"phoneNumber"`
+	Owner       string    `json:"owner"`
+	Address     Address   `json:"address"`
+	Products    []Product `json:"products"`
+	Services    []Service `json:"services"`
 	// Services Rendered because services have different values and aren't products that can just be
 	// picked up
 }
 
 type Service struct {
-	ServiceId int `json:"serviceId"`
-	ServiceName string `json:"serviceName"`
-	ServicePrice float64 `json:"servicePrice"`
-	ServiceDescription string `json:"serviceDescription"`
+	ServiceId          int     `json:"serviceId"`
+	ServiceName        string  `json:"serviceName"`
+	ServicePrice       float64 `json:"servicePrice"`
+	ServiceDescription string  `json:"serviceDescription"`
 }
 
-type Product struct{
-	ProductId int `json:"productId"`
-	ProductName string `json:"productName"`
-	ProductPrice float64 `json:"productPrice"`
-	ProductDescription string `json:"productDescription"`
+type Product struct {
+	ProductId          int     `json:"productId"`
+	ProductName        string  `json:"productName"`
+	ProductPrice       float64 `json:"productPrice"`
+	ProductDescription string  `json:"productDescription"`
 }
 
-type Driver struct{
-	User User `json:"user"`
-	HashedSSN string `json:"hashedSSN"`
+type Driver struct {
+	User      User      `json:"user"`
+	HashedSSN string    `json:"hashedSSN"`
 	Insurance Insurance `json:"insurance"`
-	License License `json:"license"`
-	Vehicle Vehicle `json:"vehicle"`
+	License   License   `json:"license"`
+	Vehicle   Vehicle   `json:"vehicle"`
 }
 
-type Image struct{
+type Image struct {
 	photo map[int]int
 }
 
 type Vehicle struct {
-	VehicleMake string `json:"vehicleMake"`
+	VehicleMake  string `json:"vehicleMake"`
 	VehicleModel string `json:"vehicleModel"`
-	VehicleYear string `json:"vehicleYear"`
+	VehicleYear  string `json:"vehicleYear"`
 	VehicleColor string `json:"vehicleColor"`
-	VinNumber string `json:"vinNumber"`
+	VinNumber    string `json:"vinNumber"`
 }
 
-type Insurance struct{
-	Insured *User `json:"insured"`
-	InsuranceProvider string `json:"insuranceProvider"`
-	PolicyNumber string `json:"policyNumber"`
-	ExpirationDate time.Time `json:"expirationDate"`
-	Vehicle Vehicle `json:"vehicle"`
+type Insurance struct {
+	Insured           *User     `json:"insured"`
+	InsuranceProvider string    `json:"insuranceProvider"`
+	PolicyNumber      string    `json:"policyNumber"`
+	ExpirationDate    time.Time `json:"expirationDate"`
+	Vehicle           Vehicle   `json:"vehicle"`
 }
 
-type License struct{
+type License struct {
 	Proof Image `json:"proof"`
 }
 
-type Students struct{
-	Id primitive.ObjectID `bson:"_id,omitempty"`
-	StudentId int32 `bson:"student_id,omitempty"`
-	Type string	`bson:"type,omitempty"`
-	Score float64 `bson:"score,omitempty"`
+type Students struct {
+	Id        primitive.ObjectID `bson:"_id,omitempty"`
+	StudentId int32              `bson:"student_id,omitempty"`
+	Type      string             `bson:"type,omitempty"`
+	Score     float64            `bson:"score,omitempty"`
 }
-
