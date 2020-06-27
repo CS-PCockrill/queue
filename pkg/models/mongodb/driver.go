@@ -6,7 +6,7 @@ import (
 )
 
 type DriverFunctions struct{
-	MGO *mongo.Client
+	CLIENT *mongo.Client
 }
 
 func (d *DriverFunctions) RegisterDriver(driver *models.Driver) (int, error) {

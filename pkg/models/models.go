@@ -1,6 +1,7 @@
 package models
 
 import (
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"time"
 )
 
@@ -88,3 +89,11 @@ type Insurance struct{
 type License struct{
 	Proof Image `json:"proof"`
 }
+
+type Students struct{
+	Id primitive.ObjectID `bson:"_id,omitempty"`
+	StudentId int32 `bson:"student_id,omitempty"`
+	Type string	`bson:"type,omitempty"`
+	Score float64 `bson:"score,omitempty"`
+}
+
