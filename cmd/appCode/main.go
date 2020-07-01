@@ -27,7 +27,8 @@ func main() {
 	addr := flag.String("addr", ":3000", "HTTP network address")
 	dbUrl := "mongodb://127.0.0.1:27017"
 	//Make connection to the mongodb cluster
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(dbUrl))
 	if err != nil {
 		panic(err)
@@ -48,7 +49,7 @@ func main() {
 
 	//Initialize the appInjection struct that will be passed around to rest of the application code
 	app := &appInjection{
-		user:     &mongodb.UserFunctions{CLIENT: client, CTX: ctx},
+		user:     &mongodb.UserFunctions{CLIENT: client},
 		store:    &mongodb.StoreFunctions{CLIENT: client},
 		driver:   &mongodb.DriverFunctions{CLIENT: client},
 		errorLog: errLog,
