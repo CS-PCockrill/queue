@@ -1,7 +1,6 @@
 import React, {useEffect, useState } from 'react';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import styled from 'styled-components';
-import arrow from './RegistrationForm/arrow-icon-clipart-free-download-2.jpg'
 
 const Styles = styled.div`
     .navbar {

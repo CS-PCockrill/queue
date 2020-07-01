@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap'
 import axios from 'axios';
 import styled from 'styled-components';
-import highRise from './high-rise-buildings.jpg'
+import highRise from '../../assets/high-rise-buildings.jpg';
 import { 
     BrowserRouter as Router,
     Switch,
@@ -72,7 +72,7 @@ const Styles = styled.div`
 
     .registerMain {
         width: 100vw; 
-        height: 100%;
+        height: 85%;
         margin-top: auto;
         background-color: white;
         box-sizing: border-box;
@@ -127,7 +127,6 @@ export function RegistrationForm(props) {
                 "lastName" : state.lastName,
                 "email" : state.email,
                 "password" : state.password,
-                "city" : state.city
             }
             // FIXME: Implement correct api link.
 
@@ -231,17 +230,6 @@ export function RegistrationForm(props) {
                         type="password"
                         id="password" 
                         value={state.password}
-                        onChange={handleChange}
-                        
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="formGroupCity">
-                        <Form.Control 
-                        className="form-control"
-                        placeholder="City"
-                        type="city"
-                        id="city" 
-                        value={state.city}
                         onChange={handleChange}
                         
                         />

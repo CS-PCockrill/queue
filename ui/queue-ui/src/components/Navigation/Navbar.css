@@ -1,0 +1,111 @@
+
+
+html, body {
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.nav {
+    background: white;
+    align-items: center;
+    height: 0rem;
+    min-height: 9vh;
+    overflow: hidden;
+    border-bottom: 1px solid #000;
+    margin: 0 2rem;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.nav.open {
+    min-height: 57vh;
+    margin-bottom: 3rem;
+}
+
+.nav .nav-menu {
+    justify-content: space-between;
+}
+
+.nav .toggle-collapse {
+    position: absolute;
+    top: 0%;
+    width: 90%;
+    cursor: pointer;
+    display: none;
+}
+
+.nav .toggle-collapse .toggle-icons {
+    display: flex;
+    justify-content: flex-end;
+    color: black;
+    padding: 1.7rem 0;
+    font-size: 1.4rem;
+}
+
+.collapse {
+    height: 20rem;
+}
+
+.nav .nav-items {
+    display: flex;
+    margin: 0;
+}
+
+.nav .nav-items .nav-link {
+    padding: 1.6rem 1rem;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+.nav .nav-brand a{
+    font-size: 1.6rem;
+    padding: 1.6rem 0;
+    display: block;
+    color: black;
+}
+
+.nav .manageuser {
+    padding: 1.6rem 0;
+}
+
+
+@media only screen and (max-width: 750px) {
+    .nav .nav-menu, .nav .nav-items {
+        flex-direction: column;
+    }
+    .nav .toggle-collapse {
+        display: initial;
+    }
+}

@@ -1,0 +1,155 @@
+
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.jumbo {
+        
+    background-size: cover;
+    color: #fff;
+    background-color: #000;
+    height: 600px;
+    text-align: center;
+    position: relative;
+}
+.overlay {
+    background-color: #000;
+    opacity: 0.6;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    box-sizing: border-box;
+}
+.container {
+    z-index: 2;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+}
+.searchContainer {
+    position: relative;
+    justify-content: center;
+    display: flex;
+    flex: 1 1 0%;
+    position: relative;
+    box-shadow: 0 3px 6px #888888;
+}
+.searchBarContainer {
+    width: 100%;
+    padding: 12px 16px 12px 16px;
+    display: flex;
+    background-color: #fff;
+    line-height: 24px;
+    font-size: 16px;
+    border: none;
+}
+.align {
+    align-content: center;
+
+}
+.button {
+    align-items: center;
+    display: flex;
+    background-color: black;
+    font-size: 16px;
+    padding: 1rem;
+    border: none;
+    color: white;
+}
+.button:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+.sbm {
+    width: 16px;
+    height: 1px;
+}
+input {
+    width: 100%;
+    border: none;
+    outline-width: 0;
+
+}
+.inputLabel {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+.inputPadding {
+    padding: 12px, 16px, 12px, 16px;
+    line-height: 25px;
+    font-size: 16px;
+    border: medium none;
+    display: block;
+    z-index: auto;
+    position: relative;
+    box-sizing: border-box;
+    float: none;
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px #efefef;
+}
+.title {
+    text-align: left;
+    line-height: normal;
+    position: absolute;
+    box-sizing: content-box;
+    display: block;
+    float: none;
+    left: 15%;
+    top: 10%;
+    transform: translate(-25%, -10%);
+}
+
+.imgContainer {
+    right: 0;
+    left: auto;
+    margin: 0 auto;
+    display: block;
+    width: 50vw;
+    height: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+img {
+    height: 43vw;
+    width: 43vw;
+    transform: rotate(-5deg);
+    border-radius: 10px; 
+}
+#deliveryHeader {
+    width: 45vw;
+    height: 30vw;
+    background-color: white;
+
+}
+
+p {
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 750px) {
+    .main-container {
+        flex-direction: column;
+        width: 100%;
+    }
+    img {
+        height: 60vw;
+        width: 63vw;
+        transform: rotate(0deg);
+    }
+}
