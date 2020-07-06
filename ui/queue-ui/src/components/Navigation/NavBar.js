@@ -32,7 +32,7 @@ export const NavBar = () => {
         <nav className={`nav ${nav ? 'open' : ''}`}>
             <div className="nav-menu flex-row">
                 <div className="nav-brand">
-                    <a href="#">Queue</a>
+                    <a href="/">Queue</a>
                 </div>
                 <div className="toggle-collapse">
                     <div className="toggle-icons">

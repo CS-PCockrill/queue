@@ -111,7 +111,7 @@ export function RegistrationForm(props) {
     
     const handleSubmitClick = (e) => {
         e.preventDefault();
-        if (document.getElementById('password').value) {
+        if (true) {
             sendDetailsToServer()
         } else {
             console.log('Password do not match.');
@@ -129,8 +129,8 @@ export function RegistrationForm(props) {
                 "password" : state.password,
             }
             // FIXME: Implement correct api link.
-
-            axios.post('API_BASE_URL' + 'signUp', payload)
+            console.log(payload['username'])
+            axios.post('127.0.0.1:27017' + '/signUp', payload)
                 .then(function (response) {
                     if (response.data.code === 200) {
                         setState(prevState => ({
@@ -237,14 +237,13 @@ export function RegistrationForm(props) {
                     </Form>
                     </div>
                     <div style={{justifyContent:"center", display: "flex", width: "100%"}}>
-                        <Button style={{fontSize: "18px", width: "50%", fontWeight: "bold"}}>Submit</Button>
+                        <Button style={{fontSize: "18px", width: "50%", fontWeight: "bold"}} onClick={handleSubmitClick}>Submit</Button>
                     </div>
                     
                 </div>
             </div>
             </div>
             <div style={{position: "absolute", height: "65vh", width: "100%", backgroundColor:"#20ABF5", marginTop:"35vh", backgroundImage: `url(${highRise})`}}>
-                <p>i</p>
             </div>
             
         </Styles>

@@ -37,7 +37,7 @@ li a {
     background: white;
     align-items: center;
     height: 0rem;
-    min-height: 9vh;
+    min-height: 6vh;
     overflow: hidden;
     border-bottom: 1px solid #000;
     margin: 0 2rem;
@@ -84,14 +84,14 @@ img {
 }
 
 .nav .nav-items .nav-link {
-    padding: 1.6rem 1rem;
+    padding: 1.1rem 1rem;
     font-size: 1.2rem;
     position: relative;
 }
 
 .nav .nav-brand a{
     font-size: 1.6rem;
-    padding: 1.6rem 0;
+    padding: 1.1rem 0;
     display: block;
     color: black;
 }

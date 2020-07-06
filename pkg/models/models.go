@@ -1,18 +1,25 @@
 package models
 
 import (
+	"errors"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+var (
+	ErrNoRecord           = errors.New("models: no matching record found")
+	ErrInvalidCredentials = errors.New("models: invalid credentials")
+	ErrDuplicateEmail     = errors.New("models: duplicate email")
+)
+
 type User struct {
-	ID             int       `json:"id"`
-	Username       string    `json:"username"`
+	ID             primitive.ObjectID       `json:"id"`
+	UserName       string    `json:"username"`
 	FirstName      string    `json:"firstName"`
 	LastName       string    `json:"lastName"`
 	Email          string    `json:"email"`
-	HashedPassword []byte    `json:"hashedPassword"`
+	Password []byte    `json:"hashedPassword"`
 	Created        time.Time `json:"created"`
 	Active         bool      `json:"active"`
 	Address        Address   `json:"address"`
