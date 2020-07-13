@@ -123,7 +123,7 @@ class RegistrationForm extends Component {
             'Content-Type': 'application/json', 
             "Access-Control-Allow-Origin": "*",
         } 
-        axios.post("https://localhost:3000/signUp", user ,{ headers: headers }) 
+        axios.post("https://127.0.0.1:3000/signUp", user ,{ headers: headers }) 
         .then(res => { console.log(res); 
             console.log(res.data); 
             window.location = '/' }, 
