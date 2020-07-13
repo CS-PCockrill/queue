@@ -120,7 +120,7 @@ class RegistrationForm extends Component {
             password: this.state.password
         }
         const headers = { 
-            'Content-Type': 'application/json;charset=UTF-8', 
+            'Content-Type': 'application/json', 
             "Access-Control-Allow-Origin": "*",
         } 
         axios.post("mongodb://localhost:27017/signUp", user ,{ headers: headers }) 
@@ -128,7 +128,9 @@ class RegistrationForm extends Component {
             console.log(res.data); 
             window.location = '/' }, 
             (error) => { console.log(error); 
-        });
+        }).catch((err) => {
+            console.log("ERROR ", err);
+          });
     }
 
     render() {
