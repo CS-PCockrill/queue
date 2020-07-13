@@ -52,11 +52,21 @@ func (app *appInjection) SignUp(w http.ResponseWriter, r *http.Request) {
 
 	//If there is no error and the form is validated, create a new user from http request
 	//Insert the new user into the database
-	w.Header().Set("Content-Type", "application/json")
+	// Check the origin is valid. 
+	if origin := r.Header.Get("Origin"); origin != "" { 
+		w.Header().Set("Access-Control-Allow-Origin", origin) 
+		w.Header().Set("Access-Control-Allow-Methods", "POST") 
+		w.Header().Set("Access-Control-Allow-Headers", 
+		"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization") 
+	}
+
+
+	// w.Header().Set("Content-Type", "application/json")
+	// w.Header().Set("Access-Control-Allow-Origin", "*")
 	err = app.user.Insert(
 		form.Get("username"),
-		form.Get("firstname"),
-		form.Get("lastname"),
+		form.Get("firstName"),
+		form.Get("lastName"),
 		form.Get("email"),
 		form.Get("password"))
 	if err != nil {
