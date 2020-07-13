@@ -119,15 +119,16 @@ class RegistrationForm extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        console.log("TESTING")
-        axios.post("mongodb://localhost:27017/signUp", { user })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                window.location = '/'
-            }, (error) => {
-                console.log(error);
-            });
+        const headers = { 
+            'Content-Type': 'application/json;charset=UTF-8', 
+            "Access-Control-Allow-Origin": "*",
+        } 
+        axios.post("mongodb://localhost:27017/signUp", user ,{ headers: headers }) 
+        .then(res => { console.log(res); 
+            console.log(res.data); 
+            window.location = '/' }, 
+            (error) => { console.log(error); 
+        });
     }
 
     render() {
