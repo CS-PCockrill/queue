@@ -8,7 +8,7 @@ import {
 
 import './App.css';
 import { NavBar } from './components/Navigation/NavBar';
-import { RegistrationForm } from './components/RegistrationForm/RegistrationForm';
+import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import Home from './components/HomePage/Home';
 import NoMatch from './components/NoMatch';
 import 'semantic-ui-css/semantic.min.css'

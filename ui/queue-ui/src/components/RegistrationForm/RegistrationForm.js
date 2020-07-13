@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Container, Form, Button, Col, Row } from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Form, Button, Col, Row } from 'react-bootstrap'
 import axios from 'axios';
 import styled from 'styled-components';
 import highRise from '../../assets/high-rise-buildings.jpg';
+import { API_BASE_URL } from '../../constants/constants';
 import { 
     BrowserRouter as Router,
     Switch,
@@ -91,162 +92,143 @@ const Styles = styled.div`
     }
 `;
 
-export function RegistrationForm(props) {
-    const [state, setState] = useState({
-        username: "",
-        firstName: "",
-        lastName: "",
+class RegistrationForm extends Component {
+    state = {
+        username : "",
+        firstName : "",
+        lastName : "",
         email : "",
-        password : "",
-        city : ""
-    })
+        password : ""
+    };
 
-    const handleChange = (e) => {
-        const { id, value } = e.target
-        setState(prevState => ({
-            ...prevState,
-            [id] : value
-        }))
+    handleChange = event => {
+        this.setState({ username: event.target.value});
+        this.setState({ firstName: event.target.value});
+        this.setState({ lastName: event.target.value});
+        this.setState({ email: event.target.value});
+        this.setState({ password: event.target.value});
+        
     }
     
-    const handleSubmitClick = (e) => {
-        e.preventDefault();
-        if (true) {
-            sendDetailsToServer()
-        } else {
-            console.log('Password do not match.');
+    handleSubmitClick = event => {
+        event.preventDefault();
+        const user = {
+            username: this.state.username,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password
         }
+        console.log("TESTING")
+        axios.post("mongodb://localhost:27017/signUp", { user })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                window.location = '/'
+            }, (error) => {
+                console.log(error);
+            });
     }
 
-    const sendDetailsToServer = () => {
-        if (true){
-            // props.shoeError(null);
-            const payload = {
-                "username" : state.username,
-                "firstName" : state.firstName,
-                "lastName" : state.lastName,
-                "email" : state.email,
-                "password" : state.password,
-            }
-            // FIXME: Implement correct api link.
-            console.log(payload['username'])
-            axios.post('127.0.0.1:27017' + '/signUp', payload)
-                .then(function (response) {
-                    if (response.data.code === 200) {
-                        setState(prevState => ({
-                            ...prevState,
-                            'successMessage' : 'Registration Successful. Redirecting to home page...'
-                        }))
-                        // redirectToHome();
-                        console.log("Success")
-                        console.log("null")
+    render() {
+        return(
 
-                    } else {
-                        console.log('Some error ocurred');
-                    }
-
-                }).catch(function (error) {
-                    console.log(error);
-                });
-        } else {
-            props.showError('Please enter a valid username and password.')
-        }
-    }
-    return(
-
-        // Insert a Drive with Queue "Learn more" which takes you to another page that takes you 
-        // to what it means to drive with Queue
-        <Styles>
-            <div className="registerMain">
-                <div className="driver_caption">
-                    <div style={{paddingRight: "100px", display: "flex", justifyContent: "center", flexDirection: "column"}}>
-                        <h1 style={{fontSize: 55, fontWeight: "bold"}}>Queue Tech</h1>
-                        <h2 style={{fontSize: 35}}>Delivery anytime, anywhere.</h2>
-                    </div>
-                </div>
-                <div className="ml-auto formContainer">
-                <div style={{padding: "16px 25px 16px 25px", height: "100%"}}>
-                    <h2 className="header">Sign up now</h2>
-                    <div style={{marginTop:"25px"}}>
-                    <Form>
-                    <Form.Group controlId="formGroupEmail">
-                        <Form.Control 
-                        className="form-control"
-                        placeholder="Username"
-                        type="username"
-                        id="username" 
-                        autocomplete="none"
-                        value={state.username}
-                        onChange={handleChange}
-                        
-                        />
-                    </Form.Group>
-                    <div style={{display: "flex"}}>
-                        <div style={{width: "50%"}}>
-                            <Form.Group controlId="formGroupFirstName">
-                                <Form.Control 
-                                className="form-control"
-                                placeholder="First name"
-                                type="name"
-                                id="firstName"
-                                value={state.firstName}
-                                onChange={handleChange}
-                                
-                                />
-                            </Form.Group>
+            // Insert a Drive with Queue "Learn more" which takes you to another page that takes you 
+            // to what it means to drive with Queue
+            <Styles>
+                <div className="registerMain">
+                    <div className="driver_caption">
+                        <div style={{paddingRight: "100px", display: "flex", justifyContent: "center", flexDirection: "column"}}>
+                            <h1 style={{fontSize: 55, fontWeight: "bold"}}>Queue Tech</h1>
+                            <h2 style={{fontSize: 35}}>Delivery anytime, anywhere.</h2>
                         </div>
-                        <div style={{width: "8px", height: "1px"}}></div>
-                        <div style={{width: "50%"}}>
-                            <Form.Group controlId="formGroupFullName">
-                                <Form.Control 
-                                className="form-control"
-                                placeholder="Last name"
-                                type="name"
-                                id="lastName"
-                                value={state.lastName}
-                                onChange={handleChange}
-                                
-                                />
-                            </Form.Group>
+                    </div>
+                    <div className="ml-auto formContainer">
+                    <div style={{padding: "16px 25px 16px 25px", height: "100%"}}>
+                        <h2 className="header">Sign up now</h2>
+                        <div style={{marginTop:"25px"}}>
+                        <Form>
+                        <Form.Group controlId="formGroupEmail">
+                            <Form.Control 
+                            className="form-control"
+                            placeholder="Username"
+                            type="username"
+                            name="username" 
+                            autocomplete="none"
+                            // value={state.username}
+                            onChange={this.handleChange}
+                            
+                            />
+                        </Form.Group>
+                        <div style={{display: "flex"}}>
+                            <div style={{width: "50%"}}>
+                                <Form.Group controlId="formGroupFirstName">
+                                    <Form.Control 
+                                    className="form-control"
+                                    placeholder="First name"
+                                    type="name"
+                                    name="firstName"
+                                    // value={state.firstName}
+                                    onChange={this.handleChange}
+                                    
+                                    />
+                                </Form.Group>
+                            </div>
+                            <div style={{width: "8px", height: "1px"}}></div>
+                            <div style={{width: "50%"}}>
+                                <Form.Group controlId="formGroupFullName">
+                                    <Form.Control 
+                                    className="form-control"
+                                    placeholder="Last name"
+                                    type="name"
+                                    name="lastName"
+                                    // value={state.lastName}
+                                    onChange={this.handleChange}
+                                    
+                                    />
+                                </Form.Group>
+                            </div>
+                            
+                        </div>
+                        <Form.Group controlId="formGroupPhone">
+                            <Form.Control 
+                            className="form-control"
+                            placeholder="Email"
+                            autocomplete="none"
+                            type="email"
+                            name="email" 
+                            // value={state.email}
+                            onChange={this.handleChange}
+                            
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formGroupPassword">
+                            <Form.Control 
+                            className="form-control"
+                            placeholder="Create password"
+                            type="password"
+                            name="password" 
+                            // value={state.password}
+                            onChange={this.handleChange}
+                            
+                            />
+                        </Form.Group>
+                        </Form>
+                        </div>
+                        <div style={{justifyContent:"center", display: "flex", width: "100%"}}>
+                            <Button style={{fontSize: "18px", width: "50%", fontWeight: "bold"}} onClick={this.handleSubmitClick} >Submit</Button>
                         </div>
                         
                     </div>
-                    <Form.Group controlId="formGroupPhone">
-                        <Form.Control 
-                        className="form-control"
-                        placeholder="Email"
-                        autocomplete="none"
-                        type="email"
-                        id="email" 
-                        value={state.email}
-                        onChange={handleChange}
-                        
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="formGroupPassword">
-                        <Form.Control 
-                        className="form-control"
-                        placeholder="Create password"
-                        type="password"
-                        id="password" 
-                        value={state.password}
-                        onChange={handleChange}
-                        
-                        />
-                    </Form.Group>
-                    </Form>
-                    </div>
-                    <div style={{justifyContent:"center", display: "flex", width: "100%"}}>
-                        <Button style={{fontSize: "18px", width: "50%", fontWeight: "bold"}} onClick={handleSubmitClick}>Submit</Button>
-                    </div>
-                    
                 </div>
-            </div>
-            </div>
-            <div style={{position: "absolute", height: "65vh", width: "100%", backgroundColor:"#20ABF5", marginTop:"35vh", backgroundImage: `url(${highRise})`}}>
-            </div>
+                </div>
+                <div style={{position: "absolute", height: "65vh", width: "100%", backgroundColor:"#20ABF5", marginTop:"35vh", backgroundImage: `url(${highRise})`}}>
+                </div>
+                
+            </Styles>
             
-        </Styles>
-        
-    )
+        )
+    }
 }
+
+export default RegistrationForm;
