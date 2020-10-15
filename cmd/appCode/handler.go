@@ -11,8 +11,6 @@ import (
 	"github.com/CS-PCockrill/queue/pkg/forms"
 	"github.com/CS-PCockrill/queue/pkg/models"
 	"github.com/gorilla/mux"
-
-
 )
 
 func setupCorsResponse(w *http.ResponseWriter, req *http.Request) {
@@ -44,48 +42,25 @@ func (app *appInjection) SignUp(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w)
 		return
 	}
-	
+
+	var newUser models.User
 	//Parse the form data
-	err := r.ParseForm()
-	if err != nil { // I have the app up and running in terminal
+	err := json.NewDecoder(r.Body).Decode(&newUser)
+	if err != nil { 
 		app.clientError(w, http.StatusBadRequest)
 		return
 	}
 
-	//Validate the form
-	form := forms.New(r.PostForm)
-	form.Required("userName", "firstName", "lastName", "email", "password")
-	form.MaxLength("userName", 255)
-	form.MaxLength("firstName", 255)
-	form.MaxLength("lastName", 255)
-	form.MaxLength("email", 255)
-	form.MatchesPattern("email", forms.EmailRX)
-	form.MinLength("password", 10)
-
-	//If there are any errors, redisplay the signup form.
-	if !form.Valid() {
-		//Send the user back to the signUp page, then return
-		return
-	}
+	//TODO: Validate the form
 
 	//If there is no error and the form is validated, create a new user from http request
 	//Insert the new user into the database
 	err = app.user.Insert(
-		form.Get("username"),
-		form.Get("firstName"),
-		form.Get("lastName"),
-		form.Get("email"),
-		form.Get("password"))
-
-	if err != nil {
-		if errors.Is(err, models.ErrDuplicateEmail) {
-			form.Errors.Add("email", "Address is already in use")
-			//Return the signUp page back to the user
-		} else {
-			app.serverError(w, err)
-		}
-		return
-	}
+		newUser.UserName,
+		newUser.FirstName,
+		newUser.LastName,
+		newUser.Email,
+		string(newUser.Password))
 
 	fmt.Fprintln(w, "Record Inserted")
 

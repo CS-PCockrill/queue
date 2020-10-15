@@ -34,8 +34,8 @@ class RegistrationForm extends Component {
         event.preventDefault();
         const user = {
             username: this.state.username,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
+            firstname: this.state.firstName,
+            lastname: this.state.lastName,
             email: this.state.email,
             password: this.state.password
         }
