@@ -40,12 +40,14 @@ func (app *appInjection) SingleUser(w http.ResponseWriter, r *http.Request) {
 func (app *appInjection) SignUp(w http.ResponseWriter, r *http.Request) {
 	setupCorsResponse(&w, r)
 	if (*r).Method == "OPTIONS" {
+		fmt.Println(w)
+		fmt.Fprintln(w)
 		return
 	}
 	
 	//Parse the form data
 	err := r.ParseForm()
-	if err != nil {
+	if err != nil { // I have the app up and running in terminal
 		app.clientError(w, http.StatusBadRequest)
 		return
 	}
