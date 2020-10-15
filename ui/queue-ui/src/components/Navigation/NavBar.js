@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Icon } from 'semantic-ui-react';
 import './Navbar.css';
-// import '../Jquery3.5.1.min';
-
 
 export const NavBar = () => {
     const [nav, setNav] = useState(false);
@@ -17,13 +15,7 @@ export const NavBar = () => {
         {name: "About",
         route: "/#test4"}
     ]
-    // $(document).ready(function() {
-    //    $nav = $('.nav');
-    //    $toggleCollapse = $('.toggle-collapse');
-    //    $toggleCollapse.click(function(){
-    //         $nav.toggleClass('collapse');
-    //    }) 
-    // });
+
     const openNav = () => {
         setNav(!nav);
     }

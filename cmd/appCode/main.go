@@ -23,16 +23,25 @@ type appInjection struct {
 	infoLog  *log.Logger
 }
 
+var connectionString = "mongodb+srv://queue-delivery:<EmIQUAHqjAsXm9FT>@cluster0.futg4.mongodb.net/<dbname>?retryWrites=true&w=majority"
+
+var client *mongo.Client
+
 func main() {
 	addr := flag.String("addr", ":3000", "HTTP network address")
-	dbUrl := "mongodb://127.0.0.1:27017"
+	// dbUrl := "mongodb://127.0.0.1:27017"
 	//Make connection to the mongodb cluster
+	// password := "EmIQUAHqjAsXm9FT"
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(dbUrl))
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(
+  	"mongodb+srv://queue-delivery:<EmIQUAHqjAsXm9FT>@cluster0.futg4.mongodb.net/<dbname>?retryWrites=true&w=majority",
+	))
+
 	if err != nil {
 		panic(err)
 	}
+	
 	err = client.Ping(ctx, readpref.Primary())
 	if err != nil {
 		log.Fatal(err)

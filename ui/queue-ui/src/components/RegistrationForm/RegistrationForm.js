@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap'
 import axios from 'axios';
-import styled from 'styled-components';
 import highRise from '../../assets/high-rise-buildings.jpg';
-import { API_BASE_URL } from '../../constants/constants';
+import './RegistrationForm.css';
 import { 
     BrowserRouter as Router,
     Switch,
@@ -12,85 +11,6 @@ import {
     Link
     } from 'react-router-dom';
 
-const Styles = styled.div`
-    main {
-        background-color: #fff;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        text-align: center;
-        width: 33vw;
-    }
-    .form-control {
-        height: 55px;
-        font-size: 16px;
-        border: none;
-        outline-width: 0;
-    }
-    .form-control:focus {
-        border: 1px solid #20ABF5;
-        outline: 0;
-    }
-
-    .formContainer {
-        width: 26vw;
-        height: 70%;
-        z-index: 40;
-        background-color: #efefef; 
-        border-radius: 10px; 
-        margin: 50px 150px 50px 0;
-        box-sizing: border-box;
-        display: block;
-
-    }
-    .header {
-        font-size: 30px;
-        font-weight: bold;
-    }
-    textarea:hover, 
-    input:hover, 
-    textarea:active, 
-    input:active, 
-    textarea:focus, 
-    input:focus,
-    button:focus,
-    button:active,
-    button:hover,
-    label:focus,
-    .btn:active,
-    .btn.active
-    {
-        outline:0px !important;
-        -webkit-appearance:none;
-        box-shadow: none !important;
-    }
-    Button {
-        background-color: #000;
-        border: none;
-        height: 100%;
-        width: 100%;
-    }
-
-    .registerMain {
-        width: 100vw; 
-        height: 85%;
-        margin-top: auto;
-        background-color: white;
-        box-sizing: border-box;
-        position: absolute;
-        padding: 25px 80px 0 80px;
-        display:flex;
-        flex:direction
-        justify-content: space-between;
-    }
-    div {
-        display: block;
-    }
-    div.driver_caption {
-        width:50%;
-        padding: 50px 0;
-    }
-`;
 
 class RegistrationForm extends Component {
     state = {
@@ -123,8 +43,9 @@ class RegistrationForm extends Component {
             'Content-Type': 'application/json', 
             "Access-Control-Allow-Origin": "*",
         } 
-        axios.post("https://127.0.0.1:3000/signUp", user ,{ headers: headers }) 
-        .then(res => { console.log(res); 
+        axios.post("http://127.0.0.1:3000/signUp", user ,{ headers: headers }) 
+        .then(res => {
+            console.log(res); 
             console.log(res.data); 
             window.location = '/' }, 
             (error) => { console.log(error); 
@@ -138,7 +59,7 @@ class RegistrationForm extends Component {
 
             // Insert a Drive with Queue "Learn more" which takes you to another page that takes you 
             // to what it means to drive with Queue
-            <Styles>
+            <React.Fragment>
                 <div className="registerMain">
                     <div className="driver_caption">
                         <div style={{paddingRight: "100px", display: "flex", justifyContent: "center", flexDirection: "column"}}>
@@ -227,9 +148,7 @@ class RegistrationForm extends Component {
                 </div>
                 <div style={{position: "absolute", height: "65vh", width: "100%", backgroundColor:"#20ABF5", marginTop:"35vh", backgroundImage: `url(${highRise})`}}>
                 </div>
-                
-            </Styles>
-            
+            </React.Fragment>
         )
     }
 }

@@ -1,18 +1,29 @@
 package main
 
 import (
+
 	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
 
+
 	"github.com/CS-PCockrill/queue/pkg/forms"
 	"github.com/CS-PCockrill/queue/pkg/models"
 	"github.com/gorilla/mux"
+
+
 )
 
+func setupCorsResponse(w *http.ResponseWriter, req *http.Request) {
+	(*w).Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	(*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	(*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Authorization")
+ }
+
 func (app *appInjection) Welcome(w http.ResponseWriter, r *http.Request) {
-	//_, _ = w.Write([]byte("Welcome to Queue Delivery"))
+	_, _ = w.Write([]byte("Welcome to Queue Delivery"))
 	allUser := app.user.GetUsers()
 	w.Header().Set("content-type", "application/json")
 	json.NewEncoder(w).Encode(allUser)
@@ -27,6 +38,11 @@ func (app *appInjection) SingleUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *appInjection) SignUp(w http.ResponseWriter, r *http.Request) {
+	setupCorsResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		return
+	}
+	
 	//Parse the form data
 	err := r.ParseForm()
 	if err != nil {
@@ -52,23 +68,13 @@ func (app *appInjection) SignUp(w http.ResponseWriter, r *http.Request) {
 
 	//If there is no error and the form is validated, create a new user from http request
 	//Insert the new user into the database
-	// Check the origin is valid. 
-	if origin := r.Header.Get("Origin"); origin != "" { 
-		w.Header().Set("Access-Control-Allow-Origin", origin) 
-		w.Header().Set("Access-Control-Allow-Methods", "POST") 
-		w.Header().Set("Access-Control-Allow-Headers", 
-		"Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization") 
-	}
-
-
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
 	err = app.user.Insert(
 		form.Get("username"),
 		form.Get("firstName"),
 		form.Get("lastName"),
 		form.Get("email"),
 		form.Get("password"))
+
 	if err != nil {
 		if errors.Is(err, models.ErrDuplicateEmail) {
 			form.Errors.Add("email", "Address is already in use")
@@ -78,6 +84,7 @@ func (app *appInjection) SignUp(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
+
 	fmt.Fprintln(w, "Record Inserted")
 
 	//And redirect the user to the login page

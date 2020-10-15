@@ -7,11 +7,16 @@ import (
 )
 
 func (app *appInjection) myRoutes() http.Handler {
-	gMux := mux.NewRouter()
-	gMux.HandleFunc("/", app.Welcome).Methods("GET")
-	gMux.HandleFunc("/user/{username}", app.SingleUser).Methods("GET")
-	gMux.HandleFunc("/signIn", app.SignIn).Methods("POST")
-	gMux.HandleFunc("/signUp", app.SignUp).Methods("POST")
+	router := mux.NewRouter()
 
-	return gMux
+	router.HandleFunc("/", app.Welcome).Methods("GET")
+	router.HandleFunc("/user/{username}", app.SingleUser).Methods("GET")
+	router.HandleFunc("/signIn", app.SignIn).Methods("POST")
+	router.HandleFunc("/signUp", app.SignUp).Methods("POST")
+
+	// log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), 
+	// 	handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), 
+	// 	handlers.AllowedOrigins([]string{"*"}))(router)))
+
+	return router
 }

@@ -25,7 +25,7 @@ export const Jumbotron = () => {
                                     <Icon name="map pin" />
                                     <Autocomplete
                                         apiKey="AIzaSyAw3LVRVrJ25ZRglrrK521HePSkdABf5fo"
-                                        style={{width: '100%'}}
+                                        className="inputPadding"
                                         onChange={(e) => {
                                             setPlace(e.target.value)
                                         }}
