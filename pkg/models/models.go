@@ -14,10 +14,10 @@ var (
 )
 
 type User struct {
-	ID             primitive.ObjectID       `json:"id"`
+	ID             primitive.ObjectID       `json:"_id"`
 	UserName       string    `json:"username"`
-	FirstName      string    `json:"firstName"`
-	LastName       string    `json:"lastName"`
+	FirstName      string    `json:"firstname"`
+	LastName       string    `json:"lastname"`
 	Email          string    `json:"email"`
 	Password []byte    `json:"hashedPassword"`
 	Created        time.Time `json:"created"`

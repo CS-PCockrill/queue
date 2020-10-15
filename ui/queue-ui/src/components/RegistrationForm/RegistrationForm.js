@@ -3,14 +3,9 @@ import { Form, Button, Col, Row } from 'react-bootstrap'
 import axios from 'axios';
 import highRise from '../../assets/high-rise-buildings.jpg';
 import './RegistrationForm.css';
-import { 
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    path,
-    Link
-    } from 'react-router-dom';
 
+
+let endpoint = "http://127.0.0.1:3000/signUp"
 
 class RegistrationForm extends Component {
     state = {
@@ -21,33 +16,38 @@ class RegistrationForm extends Component {
         password : ""
     };
 
-    handleChange = event => {
+    handleUsernameChange = event => {
         this.setState({ username: event.target.value});
+    }
+
+    handleNameChange = event => {
         this.setState({ firstName: event.target.value});
+    }
+    handleLastChange = event => {
         this.setState({ lastName: event.target.value});
+    }
+    handleEmailChange = event => {
         this.setState({ email: event.target.value});
+    }
+    handlePasswordChange = event => {
         this.setState({ password: event.target.value});
-        
     }
     
     handleSubmitClick = event => {
         event.preventDefault();
         const user = {
             username: this.state.username,
-            firstname: this.state.firstName,
-            lastname: this.state.lastName,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
             email: this.state.email,
             password: this.state.password
         }
-        const headers = { 
-            'Content-Type': 'application/json', 
-            "Access-Control-Allow-Origin": "*",
-        } 
-        axios.post("http://127.0.0.1:3000/signUp", user) 
+
+        axios.post(endpoint, user)
         .then(res => {
             console.log(res); 
             console.log(res.data); 
-            window.location = '/' }, 
+            window.location = '/register' }, 
             (error) => { console.log(error); 
         }).catch((err) => {
             console.log("ERROR ", err);
@@ -76,11 +76,11 @@ class RegistrationForm extends Component {
                             <Form.Control 
                             className="form-control"
                             placeholder="Username"
-                            type="username"
+                            key="username"
+                            type="text"
                             name="username" 
                             autocomplete="none"
-                            // value={state.username}
-                            onChange={this.handleChange}
+                            onChange={this.handleUsernameChange}
                             
                             />
                         </Form.Group>
@@ -90,10 +90,10 @@ class RegistrationForm extends Component {
                                     <Form.Control 
                                     className="form-control"
                                     placeholder="First name"
-                                    type="name"
+                                    key="firstName"
+                                    type="text"
                                     name="firstName"
-                                    // value={state.firstName}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleNameChange}
                                     
                                     />
                                 </Form.Group>
@@ -104,10 +104,10 @@ class RegistrationForm extends Component {
                                     <Form.Control 
                                     className="form-control"
                                     placeholder="Last name"
-                                    type="name"
+                                    key="lastName"
+                                    type="text"
                                     name="lastName"
-                                    // value={state.lastName}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleLastChange}
                                     
                                     />
                                 </Form.Group>
@@ -119,10 +119,10 @@ class RegistrationForm extends Component {
                             className="form-control"
                             placeholder="Email"
                             autocomplete="none"
-                            type="email"
+                            key="email"
+                            type="text"
                             name="email" 
-                            // value={state.email}
-                            onChange={this.handleChange}
+                            onChange={this.handleEmailChange}
                             
                             />
                         </Form.Group>
@@ -130,10 +130,10 @@ class RegistrationForm extends Component {
                             <Form.Control 
                             className="form-control"
                             placeholder="Create password"
+                            key="password"
                             type="password"
                             name="password" 
-                            // value={state.password}
-                            onChange={this.handleChange}
+                            onChange={this.handlePasswordChange}
                             
                             />
                         </Form.Group>
