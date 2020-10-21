@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"time"
+	"os"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 
@@ -53,6 +54,49 @@ func (u *UserFunctions) Insert(username, firstname, lastname, email, password st
 	return nil
 }
 
+func (u *UserFunctions) SaveAddress(id primitive.ObjectID, street, city, state, zip string) error {
+	usersCollection := u.CLIENT.Database("queue").Collection("user")
+
+	var user models.User
+	var address models.Address
+
+	// TODO: change idStr to actual user _id string to filter update
+	idStr := "5d2399ef96fb765873a24bae"
+	user_id, _ := primitive.ObjectIDFromHex(idStr)
+	filter := bson.M{"_id": bson.M{"$eq": user_id}}
+
+	address.Street = street
+	address.City = city
+	address.State = state
+	address.Zip = zip
+
+	update := bson.M{
+		{"$set", bson.M{
+			{"street", "winter wren court"},
+		}},
+	}
+
+	result, err := usersCollection.UpdateOne(
+		context.Background(),
+		filter,
+		update,
+	)
+	if err != nil {
+        fmt.Println("UpdateOne() result ERROR:", err)
+        os.Exit(1)
+    }
+
+	// update := bson.M{
+	// 	"$set": bson.M{
+	// 		"street": address.Street,
+	// 		"city": address.City,
+	// 		"state": address.State,
+	// 		"zip": address.Zip,
+	// 	},
+	// }
+
+}
+
 //Authenticate method to confirm if a user exists in the database
 func (u *UserFunctions) Authenticate(email, password string) (primitive.ObjectID, error) {
 	//Authenticate user before login by retrieving the user id and hashed password from database
@@ -81,6 +125,7 @@ func (u *UserFunctions) Authenticate(email, password string) (primitive.ObjectID
 			return output.ID, err
 		}
 	}
+	fmt.Println("Authenticated")
 	return output.ID, nil
 }
 

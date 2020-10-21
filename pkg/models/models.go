@@ -14,7 +14,7 @@ var (
 )
 
 type User struct {
-	ID             primitive.ObjectID       `json:"_id"`
+	ID             primitive.ObjectID       `bson:"_id,omitempty"`
 	UserName       string    `json:"username"`
 	FirstName      string    `json:"firstname"`
 	LastName       string    `json:"lastname"`

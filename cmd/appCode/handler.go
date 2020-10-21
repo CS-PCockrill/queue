@@ -3,14 +3,23 @@ package main
 import (
 
 	"encoding/json"
-	"errors"
+	"context"
+	// "os"
+	// "errors"
 	"fmt"
+	// "time"
+	// "io"
+	// "log"
 	"net/http"
+	// "strings"
 
-
-	"github.com/CS-PCockrill/queue/pkg/forms"
+	// "github.com/golang/gddo/httputil/header"
+	// "github.com/CS-PCockrill/queue/pkg/forms"
 	"github.com/CS-PCockrill/queue/pkg/models"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"github.com/gorilla/mux"
+	// "github.com/gomodule/redigo/redis"
 )
 
 func setupCorsResponse(w *http.ResponseWriter, req *http.Request) {
@@ -43,10 +52,13 @@ func (app *appInjection) SignUp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Guide addressing headers, syntax error's, and preventing extra data fields
+	// https://www.alexedwards.net/blog/how-to-properly-parse-a-json-request-body
+
 	var newUser models.User
 	//Parse the form data
 	err := json.NewDecoder(r.Body).Decode(&newUser)
-	if err != nil { 
+	if err != nil {
 		app.clientError(w, http.StatusBadRequest)
 		return
 	}
@@ -66,32 +78,77 @@ func (app *appInjection) SignUp(w http.ResponseWriter, r *http.Request) {
 
 	//And redirect the user to the login page
 	// _, _ = w.Write([]byte("Sign Up"))
+
 }
 
+
 func (app *appInjection) SignIn(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
+	setupCorsResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		fmt.Println(w)
+		fmt.Fprintln(w)
+		return
+	}
+	// err := r.ParseForm()
+
+	var user models.User
+	err := json.NewDecoder(r.Body).Decode(&user)
+
 	if err != nil {
 		app.clientError(w, http.StatusBadRequest)
 		return
 	}
 	//Check that user credentials are valid, if not send user a message,
 	//then re-display the login page
-	form := forms.New(r.PostForm)
-	id, err := app.user.Authenticate(form.Get("email"), form.Get("password"))
-	if err != nil {
-		if errors.Is(err, models.ErrInvalidCredentials) {
-			form.Errors.Add("message", "Incorrect Email or Password")
-			//Here is when login page is re-displayed
-		} else {
-			app.serverError(w, err)
-		}
-		return
-	}
+
+	// form := forms.New(r.PostForm)
+	id, err := app.user.Authenticate(user.Email, string(user.Password))
+	// if err != nil {
+	// 	if errors.Is(err, models.ErrInvalidCredentials) {
+	// 		form.Errors.Add("message", "Incorrect Email or Password")
+	// 		//Here is when login page is re-displayed
+	// 	} else {
+	// 		app.serverError(w, err)
+	// 	}
+	// 	return
+	// }
 	//TODO: Placeholder to add ID of the current user to the session.
+	
 	//For now, just write the ID
 	fmt.Fprintln(w, id)
+	fmt.Fprintln(w, user.Email)
 
 	//If SignIn is successful, redirect the user to the page that will be displayed.
 
 	// _, _ = w.Write([]byte("Sign In"))
+}
+
+func (app *appInjection) saveAddress(w http.ResponseWriter, r *http.Request) {
+	setupCorsResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		fmt.Println(w)
+		fmt.Fprintln(w)
+		return
+	}
+	var address models.Address
+	data := json.NewDecoder(r.Body).Decode(&address)
+
+	if data != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+
+	id, err := app.user.SaveAddress(address.Street, address.City, address.State, address.Zip)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	fmt.Printf("Updated %v Documents!\n", result.ModifiedCount)
+	// err := json.NewDecoder(r.Body).Decode(&address)
+
+	// if err != nil {
+	// 	app.clientError(w, http.StatusBadRequest)
+	// 	return
+	// }
+
 }

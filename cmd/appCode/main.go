@@ -13,6 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"github.com/gomodule/redigo/redis"
 )
 
 //Application commonalities that will be accessed all over the application
@@ -24,11 +25,11 @@ type appInjection struct {
 	infoLog  *log.Logger
 }
 
-
-
 var client *mongo.Client
+var cache redis.Conn
 
 func main() {
+	// initCache()
 	addr := flag.String("addr", ":3000", "HTTP network address")
 	// dbUrl := "mongodb://127.0.0.1:27017"
 	connectionString := "mongodb+srv://queue-delivery:EmIQUAHqjAsXm9FT@cluster0.futg4.mongodb.net/queue?retryWrites=true&w=majority"
@@ -42,7 +43,7 @@ func main() {
 		fmt.Println("mongodb connection error")
 		panic(err)
 	}
-	
+
 	err = client.Ping(ctx, readpref.Primary())
 	if err != nil {
 		log.Fatal(err)
@@ -82,4 +83,12 @@ func main() {
 	infoLog.Printf("Starting server on %s", *addr)
 	err = srv.ListenAndServe()
 	errLog.Fatal(err)
+}
+
+func initCache() {
+	conn, err := redis.DialURL("redis://localhost")
+	if err != nil {
+		panic(err)
+	}
+	cache = conn;
 }

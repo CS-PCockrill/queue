@@ -11,6 +11,14 @@ type DriverFunctions struct{
 
 func (d *DriverFunctions) RegisterDriver(driver *models.Driver) (int, error) {
 	// Register a driver, verify background check, and verify state id & insurance
+	// newDriver := d.CLIENT.Database("queue")
+	// driverCollection := newDriver.Collection("drivers")
+	// var driver models.Driver
+
+	// Get the current user in session
+	// driver.User = current session user
+
+
 	return 0, nil
 }
 
