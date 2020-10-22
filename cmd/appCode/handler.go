@@ -3,21 +3,13 @@ package main
 import (
 
 	"encoding/json"
-	"context"
-	// "os"
-	// "errors"
 	"fmt"
 	// "time"
-	// "io"
-	// "log"
 	"net/http"
-	// "strings"
 
 	// "github.com/golang/gddo/httputil/header"
 	// "github.com/CS-PCockrill/queue/pkg/forms"
 	"github.com/CS-PCockrill/queue/pkg/models"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"github.com/gorilla/mux"
 	// "github.com/gomodule/redigo/redis"
 )
@@ -103,15 +95,6 @@ func (app *appInjection) SignIn(w http.ResponseWriter, r *http.Request) {
 
 	// form := forms.New(r.PostForm)
 	id, err := app.user.Authenticate(user.Email, string(user.Password))
-	// if err != nil {
-	// 	if errors.Is(err, models.ErrInvalidCredentials) {
-	// 		form.Errors.Add("message", "Incorrect Email or Password")
-	// 		//Here is when login page is re-displayed
-	// 	} else {
-	// 		app.serverError(w, err)
-	// 	}
-	// 	return
-	// }
 	//TODO: Placeholder to add ID of the current user to the session.
 	
 	//For now, just write the ID
@@ -119,11 +102,9 @@ func (app *appInjection) SignIn(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, user.Email)
 
 	//If SignIn is successful, redirect the user to the page that will be displayed.
-
-	// _, _ = w.Write([]byte("Sign In"))
 }
 
-func (app *appInjection) saveAddress(w http.ResponseWriter, r *http.Request) {
+func (app *appInjection) SaveAddress(w http.ResponseWriter, r *http.Request) {
 	setupCorsResponse(&w, r)
 	if (*r).Method == "OPTIONS" {
 		fmt.Println(w)
@@ -131,24 +112,14 @@ func (app *appInjection) saveAddress(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var address models.Address
-	data := json.NewDecoder(r.Body).Decode(&address)
-
-	if data != nil {
+	
+	err := json.NewDecoder(r.Body).Decode(&address)
+	if err != nil {
 		app.clientError(w, http.StatusBadRequest)
 		return
 	}
 
-	id, err := app.user.SaveAddress(address.Street, address.City, address.State, address.Zip)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	id := app.user.Update(address.Street, address.City, address.State, address.Zip)
 
-	fmt.Printf("Updated %v Documents!\n", result.ModifiedCount)
-	// err := json.NewDecoder(r.Body).Decode(&address)
-
-	// if err != nil {
-	// 	app.clientError(w, http.StatusBadRequest)
-	// 	return
-	// }
-
+	fmt.Println(id)
 }
