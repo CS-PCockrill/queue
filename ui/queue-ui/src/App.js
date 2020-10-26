@@ -11,6 +11,7 @@ import { NavBar } from './components/Navigation/NavBar';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import Home from './components/HomePage/Home';
 import NoMatch from './components/NoMatch';
+import UserDashboard from './components/Dashboard/UserDashboard';
 import 'semantic-ui-css/semantic.min.css'
 
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/register" component={RegistrationForm} />
+              <Route path="/dashboard" component={UserDashboard} />
               <Route component={NoMatch} />
             </Switch>
         </Router>

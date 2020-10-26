@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Col, Row } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import axios from 'axios';
 import highRise from '../../assets/high-rise-buildings.jpg';
 import './RegistrationForm.css';
@@ -19,7 +19,6 @@ class RegistrationForm extends Component {
     handleUsernameChange = event => {
         this.setState({ username: event.target.value});
     }
-
     handleNameChange = event => {
         this.setState({ firstName: event.target.value});
     }

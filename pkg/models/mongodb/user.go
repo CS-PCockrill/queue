@@ -53,7 +53,7 @@ func (u *UserFunctions) Insert(username, firstname, lastname, email, password st
 	return nil
 }
 
-func (u *UserFunctions) Update(id primitive.ObjectID, street, city, state, zip string) error {
+func (u *UserFunctions) Update(street, city, state, zip string) error {
 	user := u.CLIENT.Database("queue")
 	userCollection := user.Collection("user")
 	

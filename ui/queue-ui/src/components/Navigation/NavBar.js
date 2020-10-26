@@ -12,8 +12,8 @@ export const NavBar = () => {
         route: "/#test2"},
         {name: "Sell",
         route: "/#test3"},
-        {name: "About",
-        route: "/#test4"}
+        {name: "Dashboard",
+        route: "/dashboard"}
     ]
 
     const openNav = () => {

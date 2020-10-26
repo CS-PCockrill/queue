@@ -1,28 +1,30 @@
 import React, {useState} from 'react';
 import { Jumbotron as Jumbo, Container, Button } from 'react-bootstrap';
-import styled from 'styled-components';
 import deliveryMan from '../../assets/high-rise-buildings.jpg';
 import { Icon } from 'semantic-ui-react';
 import Autocomplete from 'react-google-autocomplete';
 import './Home.css';
 
-// 
 
 export const Jumbotron = () => { 
-    const [place, setPlace] = useState(null);
+    const [place, setPlace] = useState("");
+
+    function handleFindStores() {
+        console.log(place)
+    }
 
     return (
-        <div className="main-container">
-            <div style={{backgroundColor: "white", width: "50%"}}>
-                <div className="imgContainer">
+        <main>
+            <section id="introContainer">
+                <div className="searchContainer">
                     <div id="deliveryHeader">
-                        <div style={{marginBottom: 45}}>
-                            <h1 style={{fontSize: 50}}>Delivery with Queue</h1>
+                        <div id="message">
+                            <h1>Delivery with Queue</h1>
                         </div>
-                        <div style={{display: "flex"}}>
-                            <div className="searchContainer">
-                                <div className="searchBarContainer">
-                                    <Icon name="map pin" />
+                        <div id="search">
+                            <div id="inputContainer">
+                                <div id="input">
+                                    <Icon style={{height: "1.2em", width: "1.2em"}}name="map pin" />
                                     <Autocomplete
                                         apiKey="AIzaSyAw3LVRVrJ25ZRglrrK521HePSkdABf5fo"
                                         className="inputPadding"
@@ -34,24 +36,25 @@ export const Jumbotron = () => {
                                         }}
                                         types={['(regions)']}
                                         componentRestrictions={{country: "us"}}
-                                        placeholder="Enter your address"
-                                    />
+                                        placeholder="Enter your address"/>
                                 </div>
                             </div>
                             <div className="sbm"></div>
-                            <Button onClick={() => console.log(place)} className="button">Find Stores</Button>
+                            <div id="buttonContainer">
+                                <Button onClick={handleFindStores} className="button">Find Stores</Button>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div style={{backgroundColor: "#fffff", width: "50%", height: "100vh"}}>
-                <div className="imgContainer">
+            </section>
+            <section id="imgContainer">
+                {/* Implement a maps of users current location 
+                with google maps replacing the image. */}
+                <div id="image">
                     <img src={deliveryMan} />
                 </div>
-            </div>
-            <div className="overlay"></div>
-
-        </div>
+            </section>
+        </main>
 )
                                     }
+

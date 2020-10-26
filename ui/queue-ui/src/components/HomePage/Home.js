@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron } from './Jumbotron';
+import MainContent from './MainContent';
 // import { NavigationBar } from '../NavigationBar';
 
 class Home extends Component {
@@ -8,7 +9,7 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <Jumbotron />
-
+                
             </React.Fragment>
           );
     }
