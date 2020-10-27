@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,500;1,600&display=swap');
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.loginTitle {
+
+}
+
+#container {
+    margin: 0 auto;
+    display: block;
+    width: 25rem;
+    height: 40rem;
+    z-index: 1;
+    background-color: #efefef; 
+    border-radius: 10px; 
+    justify-content: center;
+    /* flex-direction: column; */
+    align-items: center;
+    margin-top: 45px;
+    /* box-sizing: border-box; */
+}
+
+#loginContainer {
+    display: flex;
+    margin: 0 auto;
+    /* flex-direction: row; */
+    background-color: turquoise;
+    justify-content: center;
+    align-items: center;
+    /* justify-content: center; */
+    height: 500px;
+    width: 300px;
+}

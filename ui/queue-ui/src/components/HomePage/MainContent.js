@@ -3,7 +3,7 @@ import './Responsive.css';
 
 export default function MainContent() {
     return(
-        <div>
+        <div id="bodyContainer">
             <h1>Let's Play with Flexbox</h1>
             <section id="container">
                 <div style={{backgroundColor: "#0f9e0d"}}></div>

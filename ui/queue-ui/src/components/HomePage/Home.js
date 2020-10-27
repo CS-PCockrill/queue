@@ -9,7 +9,7 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <Jumbotron />
-                
+                {/* <MainContent /> */}
             </React.Fragment>
           );
     }

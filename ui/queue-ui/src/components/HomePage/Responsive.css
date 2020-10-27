@@ -2,7 +2,13 @@ h1 {
     text-align: center;
 }
 
-#container {
+#bodyContainer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+/* #container {
     background-color: #003049;
     width: 90%;
     height: 500px;
@@ -12,7 +18,7 @@ h1 {
     flex-direction: column;
     justify-content: space-evenly;
     flex-wrap: wrap;
-}
+} */
 
 #container div {
     width: 200px;

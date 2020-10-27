@@ -4,7 +4,6 @@ import axios from 'axios';
 import highRise from '../../assets/high-rise-buildings.jpg';
 import './RegistrationForm.css';
 
-
 let endpoint = "http://127.0.0.1:3000/signUp"
 
 class RegistrationForm extends Component {
@@ -46,7 +45,8 @@ class RegistrationForm extends Component {
         .then(res => {
             console.log(res); 
             console.log(res.data); 
-            window.location = '/register' }, 
+            window.location = '/dashboard' }, 
+            
             (error) => { console.log(error); 
         }).catch((err) => {
             console.log("ERROR ", err);
@@ -58,12 +58,15 @@ class RegistrationForm extends Component {
 
             // Insert a Drive with Queue "Learn more" which takes you to another page that takes you 
             // to what it means to drive with Queue
+
+            // Queue Delivery
+            // Make the most out of your time
             <React.Fragment>
                 <div className="registerMain">
                     <div className="driver_caption">
                         <div style={{paddingRight: "100px", display: "flex", justifyContent: "center", flexDirection: "column"}}>
-                            <h1 style={{fontSize: 55, fontWeight: "bold"}}>Queue Tech</h1>
-                            <h2 style={{fontSize: 35}}>Delivery anytime, anywhere.</h2>
+                            <h1 id="title">Queue Delivery</h1>
+                            <h2 id="caption">Make the most out of your time.</h2>
                         </div>
                     </div>
                     <div className="ml-auto formContainer">
@@ -138,8 +141,8 @@ class RegistrationForm extends Component {
                         </Form.Group>
                         </Form>
                         </div>
-                        <div style={{justifyContent:"center", display: "flex", width: "100%"}}>
-                            <Button style={{fontSize: "18px", width: "50%", fontWeight: "bold"}} onClick={this.handleSubmitClick} >Submit</Button>
+                        <div id="registerButton">
+                            <Button id="nextButton" onClick={this.handleSubmitClick} >Next</Button>
                         </div>
                         
                     </div>

@@ -1,15 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,500;1,600&display=swap');
 
 main {
     width: 100vw;
     display: flex;
     flex-direction: row;
     height: 93vh;
-    position: relative;
+    /* position: relative; */
     overflow: none;
+    z-index: 1;
 }
 
+/* #mainContainer {
+    display: flex;
+    flex-direction: row;
+} */
+
 #introContainer {
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     /* flex-direction: row; */
     height: 100%;
@@ -22,6 +32,9 @@ main {
 }
 
 #imgContainer {
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     position: relative;
     /* flex-direction: row; */
@@ -31,6 +44,14 @@ main {
 	float: right;
 }
 
+#deliveryHeader {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
 /* .container {
     z-index: 2;
     position: absolute;
@@ -47,7 +68,7 @@ main {
 #message h1 {
     font-size: 4em;
     text-align: center;
-    font-family: Roboto, sans-serif;
+    font-family: Poppins, sans-serif;
     font-weight: 400;
     font-style: medium;
     /* background-color: aqua; */
@@ -58,7 +79,7 @@ main {
 }
 
 #inputContainer {
-    width: 80%;
+    width: 77%;
     height: 4rem;
     /* background-color: gray; */
     border-radius: 0.25em;
@@ -67,7 +88,7 @@ main {
 
 #buttonContainer {
     height: 4rem;
-    width: 20%;
+    width: 23%;
 }
 
 .searchContainer {
@@ -96,20 +117,23 @@ main {
     align-content: center;
 
 }
-.button {
+.buttonCon {
     align-items: center;
     justify-content: center;
     display: flex;
     background-color: black;
     font-size: 16px;
-    font-family: Roboto, sans-serif;
+    font-family: Poppins, sans-serif;
     font-weight: 500;
+    font-style: medium;
     cursor: pointer;
     border: none;
+    height: 100%;
     border-radius: 0.25em;
     color: white;
+    padding: 0 8px;
 }
-.button:focus {
+.buttonCon:focus {
     outline: none;
     box-shadow: none;
   }
@@ -140,7 +164,7 @@ input {
     z-index: auto;
     position: relative;
     box-sizing: border-box;
-    font-family: Roboto, sans-serif;
+    font-family: Poppins, sans-serif;
     width: 100%;
 }
 .title {
@@ -172,20 +196,16 @@ img {
     /* transform: rotate(-5deg); */
     border-radius: 0.25em; 
 }
-#deliveryHeader {
-    width: 45vw;
-    height: 30vw;
-    background-color: white;
-
-}
 
 p {
     margin: 0 auto;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
     main {
-        width: 100%;
+        width: 100vw;
+        display: flex;
+        flex-direction: column-reverse;
     }
 
     #introContainer {
@@ -193,14 +213,26 @@ p {
         float: none;
         height: 50%;
     }
+
+    #message h1 {
+        font-size: 3.5em;
+        flex: 0 2 300px;
+    }
+
+    #deliveryHeader {
+        width: 80vw;
+        float: none;
+    }
+
     #imgContainer {
-        width: 100%;
-        height: 70%;
+        width: 100vw;
+        height: 75%;
+        /* position: relative; */
         float: none;
     }
 
     img {
-        height: 60vh;
+        height: 70vh;
         width: 90vw;
     }
 

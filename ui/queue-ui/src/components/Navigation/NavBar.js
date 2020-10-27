@@ -7,11 +7,11 @@ export const NavBar = () => {
 
     const navButtons = [
         {name: "Stores",
-        route: "/#test"},
+        route: "/stores"},
         {name: "Drive",
-        route: "/#test2"},
+        route: "/drive"},
         {name: "Sell",
-        route: "/#test3"},
+        route: "/sell"},
         {name: "Dashboard",
         route: "/dashboard"}
     ]
@@ -21,7 +21,8 @@ export const NavBar = () => {
     }
 
     return(
-        <nav className={`nav ${nav ? 'open' : ''}`}>
+        <div id="navbar">
+            <nav className={`nav ${nav ? 'open' : ''}`}>
             <div className="nav-menu flex-row">
                 <div className="nav-brand">
                     <a href="/">Queue</a>
@@ -47,7 +48,7 @@ export const NavBar = () => {
                 <div>
                     <ul className="nav-items">
                         <li className="nav-link">
-                            <a href="#">Sign in</a>
+                            <a href="/login">Sign in</a>
                         </li>
                         <li className="nav-link">
                             <a href="/register">Register</a>
@@ -56,6 +57,7 @@ export const NavBar = () => {
                     
                 </div>
             </div>
-        </nav>
+            </nav>
+        </div>
     );
 }

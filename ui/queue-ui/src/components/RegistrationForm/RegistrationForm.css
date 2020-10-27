@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,500;1,600&display=swap');
+
 main {
     background-color: #fff;
     justify-content: center;
@@ -6,14 +8,46 @@ main {
     text-align: center;
     width: 33vw;
 }
+
+.driver_caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    /* background-color: #20ABF5; */
+    z-index: 10;
+    margin-top: 20px;
+    /* align-items: center; */
+}
+
+#title {
+    font-size: 3em;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+#caption {
+    font-size: 2em;
+    /* text-align: center; */
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+}
+
 .form-control {
-    height: 55px;
+    height: 50px;
     font-size: 16px;
+    font-family: Poppins, sans-serif;
+    margin: 3px 3px;
     border: none;
     outline-width: 0;
+    text-indent: 0.6em;
 }
 .form-control:focus {
-    border: 1px solid #20ABF5;
+    border: 2px solid #20ABF5;
+    /* border-radius: 0.25em; */
     outline: 0;
 }
 
@@ -27,7 +61,7 @@ main {
 
 .input-label-container {
     width: 100%;
-    padding: 12px 16px 12px 16px;
+    float: left;
     display: flex;
     background-color: rgb(255, 255, 255);
     line-height: 24px;
@@ -41,14 +75,17 @@ main {
     z-index: 40;
     background-color: #efefef; 
     border-radius: 10px; 
-    margin: 50px 150px 50px 0;
+    float: right;
+    margin-right: 45px;
+    margin-top: 45px;
     box-sizing: border-box;
     display: block;
 
 }
 .header {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: 500;
+    font-family: Poppins, sans-serif;
 }
 textarea:hover, 
 input:hover, 
@@ -67,17 +104,33 @@ label:focus,
     -webkit-appearance:none;
     box-shadow: none !important;
 }
-Button {
-    background-color: #000;
-    border: none;
-    height: 100%;
+
+#registerButton {
+    display: flex;
+    justify-content: center;
+    align-content: center;
     width: 100%;
+    padding: 8px 8px;
+    font-family: Poppins, sans-serif; 
+    color: white;
+}
+
+#nextButton {
+    font-size: 18px; 
+    background-color: #003049;
+    width: 80%;
+    font-family: Poppins, sans-serif;
+    height: 3rem;
+    font-weight: 500; 
+    border: none; 
+    border-radius: 0.25em;
 }
 
 .registerMain {
     width: 100vw; 
     height: 85%;
-    margin-top: auto;
+    
+    margin: 0 auto;
     background-color: white;
     box-sizing: border-box;
     position: absolute;
@@ -85,10 +138,17 @@ Button {
     display:flex;
     justify-content: space-between;
 }
-div {
-    display: block;
-}
-div.driver_caption {
-    width:50%;
-    padding: 50px 0;
+
+
+@media only screen and (max-width: 900px) {
+    .formContainer {
+        width: 50vw;
+        float: none;
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+    }
+    .driver_caption {
+        display: none;
+    }
 }

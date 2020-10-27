@@ -1,7 +1,7 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,500;1,600&display=swap');
 
 html, body {
-    margin: 0%;
+    margin: 0 auto;
     box-sizing: border-box;
     overflow-x: hidden;
 }
@@ -33,11 +33,20 @@ li a {
     flex-wrap: wrap;
 }
 
+#navbar {
+    background-color: white;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
 .nav {
     background: white;
     align-items: center;
     height: 0rem;
-    min-height: 6vh;
+    min-height: 3.5rem;
     overflow: hidden;
     margin: 0 2rem;
 }
@@ -49,7 +58,7 @@ img {
 }
 
 .nav.open {
-    min-height: 57vh;
+    min-height: 51vh;
     margin-bottom: 3rem;
 }
 
@@ -85,7 +94,12 @@ img {
 .nav .nav-items .nav-link {
     padding: 1.1rem 1rem;
     font-size: 1.2rem;
+    font-family: Poppins, sans-serif;
     position: relative;
+}
+
+.nav .nav-items .nav-link:nth-last-child(1) {
+    border-bottom: 1px solid black;
 }
 
 .nav .nav-brand a{
@@ -100,7 +114,7 @@ img {
 }
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
     .nav .nav-menu, .nav .nav-items {
         flex-direction: column;
     }

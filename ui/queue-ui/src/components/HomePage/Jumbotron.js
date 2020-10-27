@@ -41,7 +41,7 @@ export const Jumbotron = () => {
                             </div>
                             <div className="sbm"></div>
                             <div id="buttonContainer">
-                                <Button onClick={handleFindStores} className="button">Find Stores</Button>
+                                <Button onClick={handleFindStores} className="buttonCon">Find Stores</Button>
                             </div>
                         </div>
                     </div>
