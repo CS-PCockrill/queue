@@ -14,7 +14,7 @@ export const Jumbotron = () => {
     }
 
     return (
-        <main>
+        <main style={{marginTop: "3.5rem"}}>
             <section id="introContainer">
                 <div className="searchContainer">
                     <div id="deliveryHeader">

@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import './UserDashboard.css';
+import { Route } from "react-router-dom";
+import UpdateAddress from '../UserProfile/UpdateAddress';
+import PaymentInfo from '../UserProfile/PaymentInfo';
+import PersonalInfo from '../UserProfile/PersonalInfo';
+import CompleteRegistration from '../UserProfile/CompleteRegistration';
 
 export default class UserDashboard extends Component {
-    myFunction = () => {
-        const navbar = document.getElementById("navbar");
-        var sticky = navbar.offsetTop;
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky");
-        } else {
-            navbar.classList.remove("sticky");
-        }
+    constructor(props) {
+        super();
+        this.state = {
+            items: []
+        };
     }
 
     render() {
+        const userProfile = [<UpdateAddress />, <PaymentInfo />, <PersonalInfo />, <CompleteRegistration />];
+
         return(
             <React.Fragment>
                 <svg style={{display: "none"}}>
@@ -22,11 +26,11 @@ export default class UserDashboard extends Component {
                 </svg>
                 <header className="page-header">
                     <nav>
-                        <div id="logoContainer">
+                        {/* <div id="logoContainer">
                             <a href="#0">
                                 <img className="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/vertical-logo.svg" alt="Queue logo"/>
                             </a>
-                        </div>
+                        </div> */}
                         <button className="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
                             <svg style={{width:"20px", height:"20px", ariaHidden:"true"}}>
                                 <use xlinkHref="#down"></use>
@@ -37,15 +41,15 @@ export default class UserDashboard extends Component {
                                 <h3>Admin</h3>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="/pages">
                                     {/* <svg>
                                         <use xlinkHref="#products"></use>
                                     </svg> */}
-                                    <span>Pages</span>
+                                    <span>Profile</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="#">
                                     {/* <svg>
                                         <use xlinkHref="#customers"></use>
                                     </svg> */}
@@ -53,7 +57,7 @@ export default class UserDashboard extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="#">
                                     {/* <svg>
                                         <use xlinkHref="#orders"></use>
                                     </svg> */}
@@ -61,7 +65,7 @@ export default class UserDashboard extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="#">
                                     {/* <svg>
                                         <use xlinkHref="#orders"></use>
                                     </svg> */}
@@ -69,7 +73,7 @@ export default class UserDashboard extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="#">
                                     {/* <svg>
                                         <use xlinkHref="#orders"></use>
                                     </svg> */}
@@ -77,7 +81,7 @@ export default class UserDashboard extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="#">
                                     {/* <svg>
                                         <use xlinkHref="#orders"></use>
                                     </svg> */}
@@ -88,7 +92,7 @@ export default class UserDashboard extends Component {
                                 <h3>Settings</h3>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="#">
                                     {/* <svg>
                                         <use xlink:href="#settings"></use>
                                     </svg> */}
@@ -96,7 +100,7 @@ export default class UserDashboard extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="#">
                                     {/* <svg>
                                         <use xlink:href="#options"></use>
                                     </svg> */}
@@ -104,7 +108,7 @@ export default class UserDashboard extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#0">
+                                <a href="#">
                                     {/* <svg>
                                         <use xlink:href="#charts"></use>
                                     </svg> */}
@@ -124,13 +128,19 @@ export default class UserDashboard extends Component {
                 </header>
                 <section className="page-content">
                     <section className="grid">
-                        <article></article>
-                        <article></article>
-                        <article></article>
-                        <article></article>
+                        {/* Map <articles> where you pass in a component as the body of each article  */}
+                        {
+                        userProfile.map(component => {
+                                return (
+                                    <article>
+                                        {component}
+                                    </article>
+                                )
+                            })
+                        }
                     </section>
                 </section>
             </React.Fragment>
-        )
+        );
     }
 }

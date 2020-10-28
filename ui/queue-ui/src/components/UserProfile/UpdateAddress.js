@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import ListDetail from './ListDetail';
 
 let endpoint = "http://localhost:3000/address"
 
-export function UpdateAddress(props) {
+export default function UpdateAddress(props) {
     const [state, setState] = React.useState({
         street: "",
         city: "",
@@ -18,7 +20,7 @@ export function UpdateAddress(props) {
         });
     }
 
-    handleSubmitClick = event => {
+    function handleSubmitClick(event) {
         event.preventDefault();
         const address = {
             street: this.state.street,
@@ -37,26 +39,10 @@ export function UpdateAddress(props) {
             console.log("ERROR ", err);
           });
     }
+
     return (
-        <form>
-          <label>
-            Street
-            <input
-              type="text"
-              name="street"
-              value={state.street}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            City
-            <input
-              type="text"
-              name="city"
-              value={state.city}
-              onChange={handleChange}
-            />
-          </label>
-        </form>
+        <section style={{width: "100%", height: "100%"}}>
+            <ListDetail title="Addresses" />
+        </section>
       );
 }

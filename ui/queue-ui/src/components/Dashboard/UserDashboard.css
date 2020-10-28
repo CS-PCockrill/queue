@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,500;1,600&display=swap');
 
 :root {
-  --page-header-bgColor: #000000;
+  --page-header-bgColor: #ffffff;
   --page-header-bgColor-hover: #1d2636;
-  --page-header-txtColor: #dde9f8;
-  --page-header-headingColor: #adb8cb;
+  --page-header-txtColor: #000;
+  --page-header-headingColor: #000000;
   --page-header-width: 220px;
   --page-content-bgColor: #f0f1f6;
   --page-content-txtColor: #efefef;
@@ -54,10 +54,9 @@ svg {
   display: block;
 }
 
-
 .admin-menu a span {
   text-decoration: none;
-  color: white;
+  color: black;
   font-family: Poppins, sans-serif;
   font-size: 14px;
 }
@@ -162,34 +161,53 @@ svg {
 
 .page-content {
   position: relative;
-  left: var(--page-header-width);
+  left: var(--page-header-width );
   width: calc(100% - var(--page-header-width));
-  min-height: 100vh;
+  min-height: 99vh;
   margin-top: 3.5rem;
-  padding: 30px;
+  padding: 15px;
   color: var(--page-content-txtColor);
   background: var(--page-content-bgColor);
+  /* overflow: hidden; */
 }
 
 
 .page-content .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 90vh;
+  margin-left: -15px;
+  margin-right: -15px;
+  align-items: center;
+  /* height: 500px; */
 }
 
-.page-content .grid > article {
-  display: flex;
-  height: 300px;
+.page-content .grid article {
+  /* display: flex;
+  flex-direction: row; */
+  height: 49%;
+  margin: 15px;
+  width: 45%;
   background: var(--page-content-blockColor);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  
 }
 
-.page-content .grid > article:first-child,
-.page-content .grid > article:last-child {
-  grid-column: 1 / -1;
+.page-content .grid article:last-child {
+  background-color: transparent;
+  box-shadow: none;
 }
+
+/* .page-content .grid article:nth-child(3) {
+  height: 700px;
+} */
+
+/* .page-content .grid > article:first-child,
+.page-content .grid > article:last-child {
+  grid-column: 1 / -2;
+} */
 
 
 
