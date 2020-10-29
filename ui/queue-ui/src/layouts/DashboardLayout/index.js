@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 // import { Outlet } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import {
+  makeStyles,
+  Hidden
+} from '@material-ui/core';
 import NavBar from './NavBar';
 import './UserDashboard.css';
 
@@ -57,14 +60,26 @@ const DashboardLayout = ({ children }) => {
         collapseSideBar={setSideBarCollapsed}
         openMobile={isMobileNavOpen}
       />
-      <div className={isSideBarCollapsed ? classes.wrapperNavClosed : classes.wrapper}>
-        <div className={classes.contentContainer}>
-          <div className={classes.content}>
-            {children}
-            {/* <Outlet /> */}
+      <Hidden lgUp>
+        <div className={isSideBarCollapsed ? classes.wrapperNavClosed : classes.wrapper}>
+          <div className={classes.contentContainer}>
+            <div className={classes.content}>
+              {children}
+              {/* <Outlet /> */}
+            </div>
           </div>
         </div>
-      </div>
+      </Hidden>
+      <Hidden mdDown>
+        <div className={classes.wrapper}>
+          <div className={classes.contentContainer}>
+            <div className={classes.content}>
+              {children}
+              {/* <Outlet /> */}
+            </div>
+          </div>
+        </div>
+      </Hidden>
     </div>
   );
 };
