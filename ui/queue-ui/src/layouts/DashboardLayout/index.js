@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const DashboardLayout = ({ children }) => {
   const classes = useStyles();
   const [isMobileNavOpen, setMobileNavOpen] = useState(true);
-  const [isSideBarCollapsed, setSideBarCollapsed] = useState(false)
+  const [isSideBarCollapsed, setSideBarCollapsed] = useState(true)
 
   return (
     <div className={classes.root}>
