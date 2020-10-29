@@ -13,7 +13,7 @@ export default class PersonalInfo extends React.Component {
                 <div>
                     <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", verticalAlign: "baseline"}}>
                         <h3 style={{color: "black", textAlign: "left", marginLeft: "16px", paddingTop: "12px"}}>Personal Information</h3>
-                        <button style={{color: '#fff', fontWeight: "bold", justifyContent: "flex-end", backgroundColor: "black", width: "4em", height: "31px", borderRadius: "2rem", marginTop: "8px", marginRight: "6px"}}>Save</button>
+                        <button style={{fontWeight: "bold", justifyContent: "flex-end", backgroundColor: "black", width: "4em", height: "31px", borderRadius: "2rem", marginTop: "8px", marginRight: "6px", color: '#fff'}}>Save</button>
                     </div>
                     <div style={{height: "48px", width: "100% - 8px", margin: "8px 8px", display: "flex"}}>
                             <div style={{width: "50%"}}>

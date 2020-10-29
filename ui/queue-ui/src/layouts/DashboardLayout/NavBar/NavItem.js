@@ -5,12 +5,15 @@ import PropTypes from 'prop-types';
 import {
   Button,
   ListItem,
-  makeStyles
+  makeStyles,
+  Hidden
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   item: {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   button: {
     color: '#000',
@@ -23,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     padding: 5,
     width: '100%',
   },
+  icon: {
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(1)
+  },
   heading: {
     textTransform: 'uppercase',
     letterSpacing: 2.5,
@@ -31,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginLeft: theme.spacing(2),
-    marginRight: 'auto',
+    marginRight: theme.spacing(2),
     whiteSpace: 'nowrap',
   },
 }));
@@ -41,6 +48,7 @@ const NavItem = ({
   href,
   icon: Icon,
   title,
+  iconButton,
   ...rest
 }) => {
   const classes = useStyles();
@@ -56,9 +64,24 @@ const NavItem = ({
         component={RouterLink}
         to={href}
       >
-        <span className={classes.title}>
-          {title}
-        </span>
+        {Icon && (
+          <Icon
+            className={classes.icon}
+            size="20"
+          />
+        )}
+        <Hidden mdDown>
+          <span className={classes.title}>
+            {title}
+          </span>
+        </Hidden>
+        <Hidden lgUp>
+          {iconButton ? null : (
+            <span className={classes.title}>
+              {title}
+            </span>
+          )}
+        </Hidden>
       </Button>
     </ListItem>
   );
