@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     [theme.breakpoints.up('lg')]: {
       paddingLeft: 200
+    },
+    [theme.breakpoints.down('md')]: {
+      paddingLeft: 100
     }
   },
   wrapperNavClosed: {
@@ -28,9 +31,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     paddingTop: 60,
     height: '100vh',
-    [theme.breakpoints.up('lg')]: {
-      paddingLeft: 0
-    }
+    paddingLeft: 100
   },
   contentContainer: {
     display: 'flex',
@@ -47,14 +48,16 @@ const useStyles = makeStyles((theme) => ({
 const DashboardLayout = ({ children }) => {
   const classes = useStyles();
   const [isMobileNavOpen, setMobileNavOpen] = useState(true);
+  const [isSideBarCollapsed, setSideBarCollapsed] = useState(false)
 
   return (
     <div className={classes.root}>
       <NavBar
         onMobileClose={() => setMobileNavOpen(false)}
+        collapseSideBar={setSideBarCollapsed}
         openMobile={isMobileNavOpen}
       />
-      <div className={isMobileNavOpen ? classes.wrapper : classes.wrapperNavClosed}>
+      <div className={isSideBarCollapsed ? classes.wrapperNavClosed : classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>
             {children}
