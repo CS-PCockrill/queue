@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = ({ onMobileClose, openMobile, collapseSideBar }) => {
   const classes = useStyles();
-  const [iconBtn, setIconBtn] = useState(false)
+  const [iconBtn, setIconBtn] = useState(true)
 
   useEffect(() => {
     collapseSideBar(iconBtn)
