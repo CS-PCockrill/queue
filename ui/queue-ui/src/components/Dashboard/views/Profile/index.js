@@ -34,9 +34,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = () => {
   const classes = useStyles();
+    const components = [<UpdateAddress />, <PaymentInfo />, <PersonalInfo />, <CompleteRegistration />];
 
   return (
     <Container maxWidth={false} className={classes.root}>
+        
         <Grid
             container
             spacing={3}
@@ -58,57 +60,24 @@ const Profile = () => {
             container
             spacing={3}
         >
-            <Grid
-                item
-                xl={6}
-                lg={6}
-                md={6}
-                sm={12}
-                xs={12}
-            >
-                <article style={{background: '#fff', height: '100%', width: '100%', borderRadius: 12, padding: '3px 6px 15px'}}>
-                    <UpdateAddress />
-                </article>
-            </Grid>
-
-            <Grid
-                item
-                xl={6}
-                lg={6}
-                md={6}
-                sm={12}
-                xs={12}
-            >
-                <article style={{background: '#fff', height: '100%', width: '100%', borderRadius: 12, padding: '3px 6px 15px'}}>
-                    <PaymentInfo />
-                </article>
-            </Grid>
-
-            <Grid
-                item
-                xl={6}
-                lg={6}
-                md={6}
-                sm={12}
-                xs={12}
-            >
-                <article style={{background: '#fff', height: '100%', width: '100%', borderRadius: 12, padding: '3px 6px 15px'}}>
-                    <PersonalInfo />
-                </article>
-            </Grid>
-
-            <Grid
-                item
-                xl={6}
-                lg={6}
-                md={6}
-                sm={12}
-                xs={12}
-            >
-                <article style={{height: '100%', width: '100%', borderRadius: 12, padding: '3px 6px 15px'}}>
-                    <CompleteRegistration />
-                </article>
-            </Grid>
+            {
+            components.map(component => {
+                    return (
+                        <Grid
+                            item
+                            xl={6}
+                            lg={6}
+                            md={6}
+                            sm={12}
+                            xs={12}
+                        >
+                            <article style={{background: '#fff', height: '100%', width: '100%', borderRadius: 12, padding: '3px 6px 15px'}}>
+                                {component}
+                            </article>
+                        </Grid>
+                    )
+                })
+            }
         </Grid>
       </Container>
   );

@@ -10,6 +10,7 @@ import UpdateAddress from '../../../UserProfile/UpdateAddress';
 import PaymentInfo from '../../../UserProfile/PaymentInfo';
 import PersonalInfo from '../../../UserProfile/PersonalInfo';
 import CompleteRegistration from '../../../UserProfile/CompleteRegistration';
+import ProductListObject from './ProductListObject';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,14 +57,29 @@ const Orders = () => {
         </Grid>
 
         <Grid container spacing={3}>
-          <Grid item lg={9} md={9} sm={12} xs={12} >
-            <div style={{background: '#fff', borderRadius: 12, height: 800, padding: 20}}>
-              <h1>80%</h1>
+          <Grid item lg={8} md={8} sm={12} xs={12} >
+            <div style={{background: '#fff', borderRadius: "0.5em", height: 650, padding: 20}}>
+              <h3>Products & Services</h3>
+              <div className={classes.verticalcenter} style={{backgroundColor: "black", width: "100%", height: "40px", borderRadius: "0.5rem", display: "flex", color: "white", justifyContent: "space-evenly", fontWeight: "bold"}}>
+                <span>Image</span>
+                <span>Title</span>
+                <span>Stock</span>
+                <span>Price</span>
+                <span>Visibility</span>
+              </div>
+              <div style={{marginTop: "16px"}}>
+                  <ProductListObject />
+                  <ProductListObject />
+                  <ProductListObject />
+                  <ProductListObject />
+              </div>
             </div>
           </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12} >
-            <div style={{background: '#fff', borderRadius: 12, height: 800, padding: 20}}>
-              <h1>20%</h1>
+          <Grid item lg={4} md={4} sm={12} xs={12} >
+            <div style={{background: '#fff', borderRadius: "0.5em", height: 500, padding: 20}}>
+              <h3>Add Item</h3>
+
+              <div style={{backgroundColor: "black", width: "100%", height: "150px", borderRadius: "0.5em"}}></div>
             </div>
           </Grid>
         </Grid>
