@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 60,
     height: '100vh',
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: 200
+      paddingLeft: 175
     },
     [theme.breakpoints.down('md')]: {
-      paddingLeft: 100
+      paddingLeft: 75
     }
   },
   wrapperNavClosed: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     paddingTop: 60,
     height: '100vh',
-    paddingLeft: 100
+    paddingLeft: 75
   },
   contentContainer: {
     display: 'flex',

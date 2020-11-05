@@ -8,7 +8,7 @@ import clsx from 'clsx'
 
 import UpdateAddress from '../../../UserProfile/UpdateAddress';
 import PaymentInfo from '../../../UserProfile/PaymentInfo';
-import PersonalInfo from '../../../UserProfile/PersonalInfo';
+import  PersonalInfo from '../../../UserProfile/PersonalInfo';
 import CompleteRegistration from '../../../UserProfile/CompleteRegistration';
 
 const useStyles = makeStyles((theme) => ({

@@ -41,16 +41,16 @@ const items = [
     icon: HomeIcon,
     title: 'profile'
   },
-  {
-    href: '/dashboard/users',
-    icon: UserIcon,
-    title: 'users'
-  },
-  {
-    href: '/dashboard/trends',
-    icon: TrendsIcon,
-    title: 'trends'
-  },
+  // {
+  //   href: '/dashboard/users',
+  //   icon: UserIcon,
+  //   title: 'users'
+  // },
+  // {
+  //   href: '/dashboard/trends',
+  //   icon: TrendsIcon,
+  //   title: 'trends'
+  // },
   {
     href: '/dashboard/orders',
     icon: OrderIcon,
@@ -89,7 +89,7 @@ const items = [
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
-    top: 50,
+    top: "3.5rem",
     backgroundColor: '#fff',
     height: 'calc(100% - 50px)'
   },

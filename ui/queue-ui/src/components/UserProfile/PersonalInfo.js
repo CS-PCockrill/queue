@@ -1,111 +1,183 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
+import { makeStyles }  from '@material-ui/core/styles';
+import { Button, TextField } from '@material-ui/core';
 import './PersonalInfo.css';
 
-export default class PersonalInfo extends React.Component {
-    constructor(props) {
-        super();
-    }
 
-    render() {
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& .MuiTextField-root': {
+        marginBottom: theme.spacing(1),
+        width: '100%',
+      },
+    },
+    paper: {
+      position: 'absolute',
+      width: "35%",
+      height: "70%",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "white",
+      borderRadius: "0.5em",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      transition: "0.25s",
+      ["@media (max-width: 900px)"]: {
+          width: "70%",
+          backgroundColor: "white",
+      },
+    },
+    notchedOutline: {
+      borderWidth: "1px",
+      borderColor: "#fff !important",
+    },
+  }));
+
+const PersonalInfo = props => {
+        const classes = useStyles()
+
         return(
             <section style={{width: "100%", height: "100%"}}>
                 <div>
                     <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", verticalAlign: "baseline"}}>
                         <h3 style={{color: "black", textAlign: "left", marginLeft: "16px", paddingTop: "12px"}}>Personal Information</h3>
-                        <button style={{fontWeight: "bold", justifyContent: "flex-end", backgroundColor: "black", width: "4em", height: "31px", borderRadius: "2rem", marginTop: "8px", marginRight: "6px", color: '#fff'}}>Save</button>
+                        <Button id="saveBtn">Save</Button>
                     </div>
-                    <div style={{height: "48px", width: "100% - 8px", margin: "8px 8px", display: "flex"}}>
+                    <div style={{margin: "8px 8px", display: "flex"}}>
                             <div style={{width: "50%"}}>
-                                <Form.Group controlId="formGroupFirstName">
-                                    <Form.Control 
-                                    className="personalInfo"
-                                    placeholder="First name"
-                                    key="firstName"
+                                <TextField
+                                    id="outlined-password-input"
+                                    label="First name"
                                     type="text"
-                                    name="firstName"
-                                    
-                                    
-                                    />
-                                </Form.Group>
+                                    autoComplete="current-password"
+                                    variant="outlined"
+                                    className="personalInfo"
+                                    InputProps={{
+                                        classes: {
+                                            notchedOutline: classes.notchedOutline
+                                        }
+                                    }}
+                                    InputLabelProps={{
+                                        style: {
+                                          color: "gray",
+                                        }
+                                      }}
+                                />
                             </div>
                             <div style={{width: "8px", height: "1px"}}></div>
                             <div style={{width: "50%"}}>
-                                <Form.Group controlId="formGroupLastName">
-                                    <Form.Control 
-                                    className="personalInfo"
-                                    placeholder="Last name"
-                                    key="lastName"
+                                <TextField
+                                    id="outlined-password-input"
+                                    label="Last name"
                                     type="text"
-                                    name="lastName"
-                                    
-                                    
-                                    />
-                                </Form.Group>
+                                    autoComplete="current-password"
+                                    variant="outlined"
+                                    className="personalInfo"
+                                    InputProps={{
+                                        classes: {
+                                            notchedOutline: classes.notchedOutline
+                                        }
+                                    }}
+                                    InputLabelProps={{
+                                        style: {
+                                          color: "gray",
+                                        }
+                                      }}
+                                />
                             </div>
                     </div>
-                    <div style={{height: "48px", width: "100% - 8px", margin: "8px 8px", display: "flex"}}>
+                    <div style={{paddingTop: "8px", margin: "8px 8px", display: "flex"}}>
                             <div style={{width: "50%"}}>
-                                <Form.Group controlId="formGroupFirstName">
-                                    <Form.Control 
-                                    className="personalInfo"
-                                    placeholder="Gender"
-                                    key="firstName"
+                                <TextField
+                                    id="outlined-password-input"
+                                    label="Gender"
                                     type="text"
-                                    name="firstName"
-                                    
-                                    
-                                    />
-                                </Form.Group>
+                                    autoComplete="current-password"
+                                    variant="outlined"
+                                    className="personalInfo"
+                                    InputProps={{
+                                        classes: {
+                                            notchedOutline: classes.notchedOutline
+                                        }
+                                    }}
+                                    InputLabelProps={{
+                                        style: {
+                                          color: "gray",
+                                        }
+                                      }}
+                                />
                             </div>
                             <div style={{width: "8px", height: "1px"}}></div>
                             <div style={{width: "50%"}}>
-                                <Form.Group controlId="formGroupLastName">
-                                    <Form.Control 
-                                    className="personalInfo"
-                                    placeholder="Date of birth"
-                                    key="lastName"
+                                <TextField
+                                    id="outlined-password-input"
+                                    label="Date of birth"
                                     type="text"
-                                    name="lastName"
-                                    
-                                    
-                                    />
-                                </Form.Group>
+                                    autoComplete="current-password"
+                                    variant="outlined"
+                                    className="personalInfo"
+                                    InputProps={{
+                                        classes: {
+                                            notchedOutline: classes.notchedOutline
+                                        }
+                                    }}
+                                    InputLabelProps={{
+                                        style: {
+                                          color: "gray",
+                                        }
+                                      }}
+                                />
                             </div>
                     </div>
-                    <h3 style={{color: "black", textAlign: "left", marginTop: "12px", marginLeft: "16px"}}>Contact Information</h3>
-                    <div style={{height: "48px", width: "100%", margin: "8px"}}>
+                    <h3 style={{color: "black", textAlign: "left", marginTop: "16px", marginLeft: "16px"}}>Contact Information</h3>
+                    <div style={{margin: "8px"}}>
                             <div style={{width: "80%"}}>
-                                <Form.Group controlId="formGroupFirstName">
-                                    <Form.Control 
-                                    className="personalInfo"
-                                    placeholder="Phone number"
-                                    key="firstName"
+                                <TextField
+                                    id="outlined-password-input"
+                                    label="Phone number"
                                     type="text"
-                                    name="firstName"
-                                    
-                                    
-                                    />
-                                </Form.Group>
+                                    autoComplete="current-password"
+                                    variant="outlined"
+                                    className="personalInfo"
+                                    InputProps={{
+                                        classes: {
+                                            notchedOutline: classes.notchedOutline
+                                        }
+                                    }}
+                                    InputLabelProps={{
+                                        style: {
+                                          color: "gray",
+                                        }
+                                      }}
+                                />
                             </div>
                     </div>
-                    <div style={{height: "48px", width: "100%", margin: "8px"}}>
-                            <div style={{width: "80%"}}>
-                                <Form.Group controlId="formGroupFirstName">
-                                    <Form.Control 
-                                    className="personalInfo"
-                                    placeholder="Email"
-                                    key="firstName"
+                    <div style={{margin: "8px"}}>
+                            <div style={{width: "80%", paddingTop: "8px"}}>
+                                <TextField
+                                    
+                                    id="outlined-password-input"
+                                    label="Email"
                                     type="text"
-                                    name="firstName"
-                                    
-                                    
-                                    />
-                                </Form.Group>
+                                    autoComplete="current-password"
+                                    variant="outlined"
+                                    className="personalInfo"
+                                    InputProps={{
+                                        classes: {
+                                            notchedOutline: classes.notchedOutline
+                                        }
+                                    }}
+                                    InputLabelProps={{
+                                        style: {
+                                          color: "gray",
+                                        }
+                                      }}
+                                />
                             </div>
                     </div>
                 </div>
             </section>
         );
     }
-}
+export default PersonalInfo;

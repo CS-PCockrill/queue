@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,500;1,600&display=swap');
+
+#addContainer {
+    display: flex; 
+    height: 100%;
+    width: 100%;
+    /* align-items: center;  */
+    border-radius: 0.5em;
+}
+
+#addContainer:hover {
+    background-color: white;
+    opacity: 0.85;
+}
+
+
+#addIcon {
+    height: 100%;
+    margin: 12px;
+}
+
+#addLabel {
+    font-family: Poppins, sans-serif; 
+    font-size: 20px;
+ }
